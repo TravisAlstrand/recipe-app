@@ -37,7 +37,10 @@ module.exports = (sequelize) => {
         this.setDataValue('password', hashedPassword);
       }
     },
-  }, { sequelize });
+  }, {
+    sequelize,
+    timestamps: false
+  });
 
   User.associate = (models) => {
     User.hasMany(models.Recipe, {

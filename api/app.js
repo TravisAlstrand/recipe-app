@@ -8,7 +8,7 @@ const sequelize = new Sequelize({
 });
 
 app.use(express.json());
-// app.use('/api', router);
+app.use('/api', router);
 
 sequelize.authenticate()
   .then(() => {
