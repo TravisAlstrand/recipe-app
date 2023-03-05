@@ -1,13 +1,15 @@
 const express = require('express');
 const morgan = require('morgan');
 const { Sequelize } = require('sequelize');
-const router = require('./routes/index');
+const userRouter = require('./routes/users');
+const recipeRouter = require('./routes/recipes');
 const enableGlobalErrorLogging = process.env.ENABLE_GLOBAL_ERROR_LOGGING === 'true';
 
 const app = express();
 app.use(express.json());
 app.use(morgan('dev'));
-app.use('/api', router);
+app.use('/users', userRouter);
+app.use('/recipes', recipeRouter);
 
 const sequelize = new Sequelize({
   dialect: 'sqlite',
