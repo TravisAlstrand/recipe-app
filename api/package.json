@@ -9,6 +9,7 @@
   "author": "Travis Alstrand",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "express": "^4.18.2",
     "nodemon": "^2.0.21",
     "sequelize": "^6.29.0",
