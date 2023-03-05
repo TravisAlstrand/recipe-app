@@ -46,12 +46,15 @@ class Database {
     return this.context
       .execute(`
         INSERT INTO Recipes
-          (userId, recipeName, ingredients, directions)
+          (userId, recipeName, ethnicType, difficulty, isSlowCooker, ingredients, directions)
         VALUES
-          (?, ?, ?, ?);
+          (?, ?, ?, ?, ?, ?, ?);
       `,
         recipe.userId,
         recipe.recipeName,
+        recipe.ethnicType,
+        recipe.difficulty,
+        recipe.isSlowCooker,
         recipe.ingredients,
         recipe.directions);
   }
@@ -123,7 +126,10 @@ class Database {
     await this.context.execute(`
       CREATE TABLE Recipes (
         id INTEGER PRIMARY KEY AUTOINCREMENT, 
-        recipeName VARCHAR(255) NOT NULL DEFAULT '' UNIQUE, 
+        recipeName VARCHAR(255) NOT NULL DEFAULT '' UNIQUE,
+        ethnicType VARCHAR(255),
+        difficulty VARCHAR(255),
+        isSlowCooker BOOLEAN,
         ingredients VARCHAR(255), 
         directions VARCHAR(255),  
         userId INTEGER NOT NULL DEFAULT -1 

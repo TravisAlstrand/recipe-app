@@ -1,5 +1,4 @@
 const { Model, DataTypes } = require('sequelize');
-const bcrypt = require('bcryptjs');
 
 module.exports = (sequelize) => {
 
@@ -20,6 +19,15 @@ module.exports = (sequelize) => {
           msg: 'Please provide a recipe name'
         }
       }
+    },
+    ethnicType: {
+      type: DataTypes.STRING
+    },
+    difficulty: {
+      type: DataTypes.STRING
+    },
+    isSlowCooker: {
+      type: DataTypes.BOOLEAN
     },
     ingredients: {
       type: DataTypes.STRING

@@ -8,9 +8,7 @@ const { authUser } = require('../middleware/authUser');
 router.post('/', asyncHandler(async (req, res) => {
   try {
     await User.create(req.body);
-    res
-      .status(201)
-      .end();
+    res.status(201).end();
   } catch (error) {
     if (error.name === 'SequelizeValidationError' || error.name === 'SequelizeUniqueConstraintError') {
       const errors = error.errors.map(err => err.message);

@@ -7,6 +7,7 @@ exports.authUser = async (req, res, next) => {
 
   // variable to add message to if any errors occur below
   let message;
+  console.log(req)
 
   // Parse the user's credentials from the Authorization header.
   const credentials = auth(req);

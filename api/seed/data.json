@@ -13,6 +13,9 @@
     {
       "userId": 1,
       "recipeName": "First Test Recipe",
+      "ethnicType": "Mexican",
+      "difficulty": "Easy",
+      "isSlowCooker": "TRUE",
       "ingredients": "* 3 tbs Stuff\n* 85 pounds Cheese\n* Da BEEF!",
       "directions": "* Put the Stuff in the Stuff\n* Eat all da Cheeses\n* Squash Da BEEF!"
     },
