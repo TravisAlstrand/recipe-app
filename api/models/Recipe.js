@@ -6,7 +6,7 @@ module.exports = (sequelize) => {
   class Recipe extends Model { }
 
   Recipe.init({
-    recipe_name: {
+    recipeName: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: {

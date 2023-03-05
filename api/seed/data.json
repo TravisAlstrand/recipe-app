@@ -1,0 +1,26 @@
+{
+  "users": [
+    {
+      "username": "TestUser1",
+      "password": "TestPass1"
+    },
+    {
+      "username": "TestUser2",
+      "password": "TestPass2"
+    }
+  ],
+  "recipes": [
+    {
+      "userId": 1,
+      "recipeName": "First Test Recipe",
+      "ingredients": "* 3 tbs Stuff\n* 85 pounds Cheese\n* Da BEEF!",
+      "directions": "* Put the Stuff in the Stuff\n* Eat all da Cheeses\n* Squash Da BEEF!"
+    },
+    {
+      "userId": 2,
+      "recipeName": "Second Test Recipe",
+      "ingredients": "* 3 tbs Stuff\n* 85 pounds Cheese\n* Da BEEF!",
+      "directions": "* Put the Stuff in the Stuff\n* Eat all da Cheeses\n* Squash Da BEEF!"
+    }
+  ]
+}
