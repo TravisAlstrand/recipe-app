@@ -1,6 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
-const cors = require('cors)');
+const cors = require('cors');
 const { Sequelize } = require('sequelize');
 const userRouter = require('./routes/users');
 const recipeRouter = require('./routes/recipes');
@@ -24,7 +24,6 @@ sequelize.authenticate()
   }).catch((err) => {
     console.error('Connection to database was unsuccessful!', err);
   });
-
 
 // send 404 if no other route matched
 app.use((req, res) => {

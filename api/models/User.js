@@ -30,11 +30,17 @@ module.exports = (sequelize) => {
         },
         notEmpty: {
           msg: 'Please provide a password'
+        },
+        len: {
+          args: [2, 100],
+          msg: 'Password must be at least 2 characters'
         }
       },
       set(val) {
-        const hashedPassword = bcrypt.hashSync(val, 10);
-        this.setDataValue('password', hashedPassword);
+        if (val) {
+          const hashedPassword = bcrypt.hashSync(val, 10);
+          this.setDataValue('password', hashedPassword);
+        }
       }
     },
   }, {
