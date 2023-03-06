@@ -41,7 +41,11 @@ router.put('/:id', authUser, asyncHandler(async (req, res) => {
     if (user) {
       if (req.currentUser.id === user.id) {
         console.log(req.body);
-        await user.update(req.body);
+        await User.update(req.body, {
+          where: {
+            id: req.params.id
+          }
+        });
         res.status(204).end();
       } else {
         res.status(403).json({ message: "You don't have access to edit this user" });
