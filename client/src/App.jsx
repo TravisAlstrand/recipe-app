@@ -1,9 +1,28 @@
+import { Routes, Route, Navigate } from 'react-router-dom';
 import './App.css'
+
+// COMPONENTS
+import AllRecipes from './components/AllRecipes';
+import CreateRecipe from './components/CreateRecipe';
+import RecipeDetail from './components/RecipeDetail';
+import EditRecipe from './components/EditRecipe';
+import SignIn from './components/SignIn';
+import SignUp from './components/SignUp';
 
 function App() {
 
   return (
-    <h1>Recipe App</h1>
+    <>
+      <Routes>
+        <Route exact path='/' element={<Navigate replace to='/recipes' />} />
+        <Route path='/recipes' element={<AllRecipes />} />
+        <Route exact path='/recipes/create' element={<CreateRecipe />} />
+        <Route path='/recipes/:id' element={<RecipeDetail />} />
+        <Route path='/recipes/:id/edit' element={<EditRecipe />} />
+        <Route path='/users/signin' element={<SignIn />} />
+        <Route path='/users/signup' element={<SignUp />} />
+      </Routes>
+    </>
   )
 }
 
