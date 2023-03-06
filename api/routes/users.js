@@ -22,6 +22,7 @@ router.post('/', asyncHandler(async (req, res) => {
 // GET USER
 router.get('/', authUser, asyncHandler(async (req, res) => {
   const user = req.currentUser;
+  console.log(user);
 
   if (user) {
     res.status(200).json({
@@ -39,6 +40,7 @@ router.put('/:id', authUser, asyncHandler(async (req, res) => {
 
     if (user) {
       if (req.currentUser.id === user.id) {
+        console.log(req.body);
         await user.update(req.body);
         res.status(204).end();
       } else {
