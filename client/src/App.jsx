@@ -8,6 +8,7 @@ import RecipeDetail from './components/RecipeDetail';
 import EditRecipe from './components/EditRecipe';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
+import PageNotFound from './components/PageNotFound';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
         <Route path='/recipes/:id/edit' element={<EditRecipe />} />
         <Route path='/users/signin' element={<SignIn />} />
         <Route path='/users/signup' element={<SignUp />} />
+        <Route path='*' element={<PageNotFound />} />
       </Routes>
     </>
   )
