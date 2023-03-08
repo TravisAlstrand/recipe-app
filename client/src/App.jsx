@@ -25,7 +25,7 @@ function App() {
         <Route path='*' element={<PageNotFound />} />
       </Routes>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
