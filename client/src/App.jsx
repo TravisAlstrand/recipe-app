@@ -2,6 +2,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import './App.css'
 
 // COMPONENTS
+import Header from './components/Header';
 import AllRecipes from './components/AllRecipes';
 import CreateRecipe from './components/CreateRecipe';
 import RecipeDetail from './components/RecipeDetail';
@@ -14,6 +15,7 @@ function App() {
 
   return (
     <>
+      <Header />
       <Routes>
         <Route exact path='/' element={<Navigate replace to='/recipes' />} />
         <Route path='/recipes' element={<AllRecipes />} />
