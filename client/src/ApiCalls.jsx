@@ -35,3 +35,10 @@ export const getAllRecipes = async () => {
 
   return recipes;
 };
+
+export const getSingleRecipe = async (id) => {
+  const recipe = await api(`recipes/${id}`)
+    .then(res => res.json());
+
+  return recipe;
+}

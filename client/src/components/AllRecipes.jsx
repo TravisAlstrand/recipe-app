@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 import { getAllRecipes } from "../ApiCalls";
 
 const AllRecipes = () => {
@@ -17,7 +18,10 @@ const AllRecipes = () => {
     <>
       <h1>All Recipes</h1>
       {recipes?.map((recipe) => {
-        return (<p key={recipe.id}>{recipe.recipeName}</p>);
+        return (
+          <Link key={recipe.id} to={`/recipes/${recipe.id}`}>
+            <p>{recipe.recipeName}</p>
+          </Link>);
       })}
     </>
   );
