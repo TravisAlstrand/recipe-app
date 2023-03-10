@@ -15,6 +15,7 @@ const api = (
 
   if (body) {
     options.body = JSON.stringify(body);
+    console.log(options.body);
   }
 
   if (credentials) {
@@ -28,17 +29,30 @@ const api = (
   return fetch(url, options);
 };
 
-// USER FUNCTIONS
+// =======  USER FUNCTIONS  =======
 
+// GET SINGLE USER
 export const getUser = async (username, password) => {
 
-  const user = await api('users', "GET", null, { username, password })
+  const user = await api('users', 'GET', null, { username, password })
     .then(res => res.json());
 
   return user;
 };
 
-// RECIPE FUNCTIONS
+// CREATE NEW USER
+export const createUser = async (body) => {
+  console.log(body);
+  const response = await api('users', 'POST', body);
+
+  if (response.status === 201) {
+    return 'AWW YEAH BOYEEEE!!';
+  } else if (response.status === 400) {
+    return response.json();
+  };
+};
+
+// =======  RECIPE FUNCTIONS  =======
 
 export const getAllRecipes = async () => {
 
