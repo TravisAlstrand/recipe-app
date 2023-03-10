@@ -15,8 +15,6 @@ const SignUp = () => {
     e.preventDefault();
     const username = usernameInput.current.value;
     const password = passwordInput.current.value;
-    console.log(`UN: ${username}`);
-    console.log(`PW: ${password}`);
 
     const body = {
       username,
@@ -26,7 +24,6 @@ const SignUp = () => {
     createUser(body)
       .then(res => {
         if (res.errors) {
-          console.log(res.errors);
           setErrors(res.errors);
         } else {
           actions.signIn(username, password);

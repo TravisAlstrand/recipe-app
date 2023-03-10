@@ -1,4 +1,4 @@
-import { useRef, useContext } from "react";
+import { useRef, useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 
@@ -8,18 +8,33 @@ const SignIn = () => {
   const navigate = useNavigate();
   const usernameInput = useRef('');
   const passwordInput = useRef('');
+  const [error, setError] = useState('');
 
-  function handleSubmit(e) {
+
+  async function handleSubmit(e) {
     e.preventDefault();
     const username = usernameInput.current.value;
     const password = passwordInput.current.value;
-    actions.signIn(username, password);
-    navigate('/');
+    const response = await actions.signIn(username, password);
+    console.log(response);
+    if (response === undefined) {
+      navigate('/');
+    } else {
+      setError(response);
+    };
   };
 
   return (
     <>
       <h1>Sign In</h1>
+      {error.length ? (
+        <div>
+          <h3>Validation Error</h3>
+          <p>{error}</p>
+        </div>
+      ) : (
+        <></>
+      )}
       <form onSubmit={handleSubmit}>
         <label htmlFor='username'>Username</label>
         <input id='username' name='username' type='text' ref={usernameInput} />

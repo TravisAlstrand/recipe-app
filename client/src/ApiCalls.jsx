@@ -9,14 +9,13 @@ const api = (
   const options = {
     method,
     headers: {
-      "Content-Type": "application/json;",
+      "Content-Type": "application/json; charset=utf-8",
     },
   };
 
   if (body) {
     options.body = JSON.stringify(body);
-    console.log(options.body);
-  }
+  };
 
   if (credentials) {
     const encodedCredentials = window.btoa(
@@ -24,7 +23,7 @@ const api = (
     );
 
     options.headers["Authorization"] = `Basic ${encodedCredentials}`;
-  }
+  };
 
   return fetch(url, options);
 };
@@ -34,19 +33,21 @@ const api = (
 // GET SINGLE USER
 export const getUser = async (username, password) => {
 
-  const user = await api('users', 'GET', null, { username, password })
-    .then(res => res.json());
+  const response = await api('users', 'GET', null, { username, password });
 
-  return user;
+  if (response.status === 200) {
+    return response.json();
+  } else if (response.status === 401) {
+    return null;
+  };
 };
 
 // CREATE NEW USER
-export const createUser = async (taco) => {
-  console.log(taco);
-  const response = await api('users', 'POST', taco);
+export const createUser = async (body) => {
+  const response = await api('users', 'POST', body);
 
   if (response.status === 201) {
-    return 'AWW YEAH BOYEEEE!!';
+    return true;
   } else if (response.status === 400) {
     return response.json();
   };
@@ -67,4 +68,4 @@ export const getSingleRecipe = async (id) => {
     .then(res => res.json());
 
   return recipe;
-}
+};

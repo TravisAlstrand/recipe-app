@@ -11,10 +11,14 @@ export const Provider = (props) => {
 
   async function signInUser(username, password) {
     const response = await getUser(username, password);
-    response.password = password;
 
-    setUser(response);
-    setCookie('user', response, { path: '/' });
+    if (response !== null) {
+      response.password = password;
+      setUser(response);
+      setCookie('user', response, { path: '/' });
+    } else {
+      return 'User Not Found';
+    };
   };
 
   function signOutUser() {

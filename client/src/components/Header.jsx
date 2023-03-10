@@ -11,6 +11,7 @@ const Header = () => {
       {
         user ? (
           <>
+            <span>Welcome {user.username}!</span>
             <NavLink to='/users/signout'>Sign Out</NavLink>
           </>
         ) :
