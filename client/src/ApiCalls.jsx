@@ -57,15 +57,18 @@ export const createUser = async (body) => {
 
 export const getAllRecipes = async () => {
 
-  const recipes = await api('recipes')
+  const response = await api('recipes')
     .then(res => res.json());
 
-  return recipes;
+  return response;
 };
 
 export const getSingleRecipe = async (id) => {
-  const recipe = await api(`recipes/${id}`)
-    .then(res => res.json());
+  const response = await api(`recipes/${id}`);
 
-  return recipe;
+  if (response.status === 200) {
+    return response.json();
+  } else {
+    return response.status;
+  };
 };

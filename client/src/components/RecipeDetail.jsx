@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import { getSingleRecipe } from '../ApiCalls';
 
@@ -7,12 +7,19 @@ const RecipeDetail = () => {
 
   const [recipe, setRecipe] = useState({});
   const params = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
 
     async function getRecipe() {
       await getSingleRecipe(params.id)
-        .then(res => setRecipe(res));
+        .then(res => {
+          if (res === 404) {
+            navigate('/notfound')
+          } else {
+            setRecipe(res);
+          };
+        });
     };
 
     getRecipe();
