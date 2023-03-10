@@ -1,10 +1,11 @@
 import { useRef, useContext } from "react";
-import { Link } from "react-router-dom";
-import UserContext from "../context/UserContext";
+import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
 
 const SignIn = () => {
 
   const { actions } = useContext(UserContext)
+  const navigate = useNavigate();
   const usernameInput = useRef('');
   const passwordInput = useRef('');
 
@@ -13,6 +14,7 @@ const SignIn = () => {
     const username = usernameInput.current.value;
     const password = passwordInput.current.value;
     actions.signIn(username, password);
+    navigate('/');
   };
 
   return (
