@@ -7,6 +7,7 @@ const { authUser } = require('../middleware/authUser');
 // CREATE NEW USER
 router.post('/', asyncHandler(async (req, res) => {
   try {
+    console.log(req.body);
     await User.create(req.body);
     res.status(201).end();
   } catch (error) {

@@ -41,9 +41,9 @@ export const getUser = async (username, password) => {
 };
 
 // CREATE NEW USER
-export const createUser = async (body) => {
-  console.log(body);
-  const response = await api('users', 'POST', body);
+export const createUser = async (taco) => {
+  console.log(taco);
+  const response = await api('users', 'POST', taco);
 
   if (response.status === 201) {
     return 'AWW YEAH BOYEEEE!!';
