@@ -1,15 +1,18 @@
-import { useRef } from "react";
+import { useRef, useContext } from "react";
 import { Link } from "react-router-dom";
+import UserContext from "../context/UserContext";
 
 const SignIn = () => {
 
+  const { actions } = useContext(UserContext)
   const usernameInput = useRef('');
   const passwordInput = useRef('');
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(usernameInput.current.value);
-    console.log(passwordInput.current.value)
+    const username = usernameInput.current.value;
+    const password = passwordInput.current.value;
+    actions.signIn(username, password);
   };
 
   return (

@@ -28,6 +28,18 @@ const api = (
   return fetch(url, options);
 };
 
+// USER FUNCTIONS
+
+export const getUser = async (username, password) => {
+
+  const user = await api('users', "GET", null, { username, password })
+    .then(res => res.json());
+
+  return user;
+};
+
+// RECIPE FUNCTIONS
+
 export const getAllRecipes = async () => {
 
   const recipes = await api('recipes')
