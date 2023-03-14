@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 import { useCookies } from 'react-cookie';
-import { getUser } from "../ApiCalls";
+import { getUser } from "../utilities/ApiCalls";
 
 export const UserContext = createContext(null);
 

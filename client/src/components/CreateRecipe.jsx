@@ -1,4 +1,5 @@
-import { useRef } from "react";
+import { useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 const CreateRecipe = () => {
 
@@ -7,6 +8,7 @@ const CreateRecipe = () => {
   function handleSubmit(e) {
     e.preventDefault();
     console.log('submitted');
+    console.log(recipeName.current.value);
   };
 
   return (
@@ -40,20 +42,38 @@ const CreateRecipe = () => {
         <input type='radio' name='slowCooker' id='noSlow' />
         <div className='all-ingredients-container'>
           <p>Ingredients</p>
-          <button class='add-ingredient-btn'>+</button>
-          <div class='ingredient-container'>
+          <button className='add-ingredient-btn'>+</button>
+          <div className='ingredient-container'>
             <input type='text' name='ingredient'></input>
-            <button class='remove-ingredient-btn'>X</button>
+            <button className='remove-ingredient-btn'>X</button>
           </div>
         </div>
         <div className='all-ingredients-container'>
           <p>Directions</p>
-          <button class='add-direction-btn'>+</button>
-          <div class='direction-container'>
+          <button className='add-direction-btn'>+</button>
+          <div className='direction-container'>
             <input type='text' name='direction'></input>
-            <button class='remove-direction-btn'>X</button>
+            <button className='remove-direction-btn'>X</button>
           </div>
         </div>
+        <label htmlFor='prepTime'>Prep Time</label>
+        <input type='text' name='prepTime' id='prepTime'></input>
+        <select id='prepTimeUnit' name='prepTimeUnit'>
+          <option hidden>Select a Time Unit</option>
+          <option>Minutes</option>
+          <option>Hours</option>
+        </select>
+        <label htmlFor='cookTime'>Cook Time</label>
+        <input type='text' name='cookTime' id='cookTime'></input>
+        <select id='cookTimeUnit' name='cookTimeUnit'>
+          <option hidden>Select a Time Unit</option>
+          <option>Minutes</option>
+          <option>Hours</option>
+        </select>
+        <button type='submit'>Submit</button>
+        <Link to='/'>
+          <button>Cancel</button>
+        </Link>
       </form>
     </>
   );

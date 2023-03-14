@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
-import { getSingleRecipe } from '../ApiCalls';
+import { getSingleRecipe } from '../utilities/ApiCalls';
 
 const RecipeDetail = () => {
 
@@ -39,6 +39,8 @@ const RecipeDetail = () => {
             <ReactMarkdown>{recipe.ingredients}</ReactMarkdown>
             <p>Directions:</p>
             <ReactMarkdown>{recipe.directions}</ReactMarkdown>
+            <p>Prep Time: {recipe.prepTime}</p>
+            <p>Cook Time: {recipe.cookTime}</p>
           </>
         ) : (
           <h1>Recipe Details</h1>

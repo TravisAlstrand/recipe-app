@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
-import { getAllRecipes } from "../ApiCalls";
+import { getAllRecipes } from "../utilities/ApiCalls";
 
 const AllRecipes = () => {
 

@@ -1,7 +1,7 @@
 import { useRef, useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
-import { createUser } from "../ApiCalls";
+import { createUser } from "../utilities/ApiCalls";
 
 const SignUp = () => {
 
