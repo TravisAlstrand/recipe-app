@@ -56,7 +56,10 @@ class Database {
         recipe.difficulty,
         recipe.isSlowCooker,
         recipe.ingredients,
-        recipe.directions);
+        recipe.directions,
+        recipe.prepTime,
+        recipe.cookTime
+      );
   }
 
   async hashUserPasswords(users) {
@@ -131,7 +134,9 @@ class Database {
         difficulty VARCHAR(255),
         isSlowCooker BOOLEAN,
         ingredients VARCHAR(255), 
-        directions VARCHAR(255),  
+        directions VARCHAR(255),
+        prepTime VARCHAR(255),
+        cookTime VARCHAR(255),
         userId INTEGER NOT NULL DEFAULT -1 
           REFERENCES Users (id) ON DELETE CASCADE ON UPDATE CASCADE
       );

@@ -1,4 +1,4 @@
-const { Model, DataTypes } = require('sequelize');
+const { Model, DataTypes, STRING } = require('sequelize');
 
 module.exports = (sequelize) => {
 
@@ -33,6 +33,12 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING
     },
     directions: {
+      type: DataTypes.STRING
+    },
+    prepTime: {
+      type: DataTypes.STRING
+    },
+    cookTime: {
       type: DataTypes.STRING
     }
   }, {
