@@ -46,9 +46,9 @@ class Database {
     return this.context
       .execute(`
         INSERT INTO Recipes
-          (userId, recipeName, ethnicType, difficulty, isSlowCooker, ingredients, directions)
+          (userId, recipeName, ethnicType, difficulty, isSlowCooker, ingredients, directions, prepTime, cookTime)
         VALUES
-          (?, ?, ?, ?, ?, ?, ?);
+          (?, ?, ?, ?, ?, ?, ?, ?, ?);
       `,
         recipe.userId,
         recipe.recipeName,
