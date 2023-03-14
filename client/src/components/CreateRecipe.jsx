@@ -1,9 +1,48 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const CreateRecipe = () => {
 
   const recipeName = useRef('');
+  const [ingredients, setIngredients] = useState([]);
+  const [directions, setDirections] = useState([]);
+
+  function addField(string) {
+    let values;
+    if (string === 'ingredient') {
+      values = [...ingredients, []];
+      setIngredients(values);
+    } else if (string === 'direction') {
+      values = [...directions, []];
+      setDirections(values);
+    };
+  };
+
+  function handleChange(e, index, string) {
+    let values;
+    if (string === 'ingredient') {
+      values = [...ingredients];
+      values[index] = e.target.value;
+      setIngredients(values);
+    } else if (string === 'direction') {
+      values = [...directions];
+      values[index] = e.target.value;
+      setDirections(values);
+    };
+  };
+
+  function handleDelete(index, string) {
+    let values;
+    if (string === 'ingredient') {
+      values = [...ingredients];
+      values.splice(index, 1);
+      setIngredients(values);
+    } else if (string === 'direction') {
+      values = [...directions];
+      values.splice(index, 1);
+      setDirections(values);
+    };
+  };
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -42,19 +81,27 @@ const CreateRecipe = () => {
         <input type='radio' name='slowCooker' id='noSlow' />
         <div className='all-ingredients-container'>
           <p>Ingredients</p>
-          <button className='add-ingredient-btn'>+</button>
-          <div className='ingredient-container'>
-            <input type='text' name='ingredient'></input>
-            <button className='remove-ingredient-btn'>X</button>
-          </div>
+          <button className='add-ingredient-btn' type='button' onClick={() => addField('ingredient')}>+</button>
+          {ingredients.map((data, index) => {
+            return (
+              <div className='ingredient-container' key={index}>
+                <input type='text' name='ingredient' value={data} onChange={e => handleChange(e, index, 'ingredient')} />
+                <button className='remove-ingredient-btn' type='button' onClick={() => handleDelete(index, 'ingredient')}>X</button>
+              </div>
+            );
+          })}
         </div>
         <div className='all-ingredients-container'>
           <p>Directions</p>
-          <button className='add-direction-btn'>+</button>
-          <div className='direction-container'>
-            <input type='text' name='direction'></input>
-            <button className='remove-direction-btn'>X</button>
-          </div>
+          <button className='add-direction-btn' type='button' onClick={() => addField('direction')}>+</button>
+          {directions.map((data, index) => {
+            return (
+              <div className='direction-container' key={index}>
+                <input type='text' name='direction' value={data} onChange={e => handleChange(e, index, 'direction')} />
+                <button className='remove-direction-btn' type='button' onClick={() => handleDelete(index, 'direction')}>X</button>
+              </div>
+            );
+          })}
         </div>
         <label htmlFor='prepTime'>Prep Time</label>
         <input type='text' name='prepTime' id='prepTime'></input>
