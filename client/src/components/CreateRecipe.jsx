@@ -9,6 +9,7 @@ const CreateRecipe = () => {
   const { user } = useContext(UserContext);
   const [ingredients, setIngredients] = useState([]);
   const [directions, setDirections] = useState([]);
+  const [errors, setErrors] = useState([]);
   const navigate = useNavigate();
 
   function handleAdd(string) {
@@ -52,14 +53,31 @@ const CreateRecipe = () => {
     e.preventDefault();
     let body = cleanFormData(e.target, ingredients, directions);
     body.userId = user.id;
-    console.log(body);
-    createRecipe(body, user.username, user.password);
-    navigate('/');
+    createRecipe(body, user.username, user.password)
+      .then(res => {
+        if (res.errors) {
+          setErrors(res.errors);
+        } else {
+          navigate('/');
+        };
+      });
   };
 
   return (
     <>
       <h1>Create Recipe</h1>
+      {errors.length > 0 ? (
+        <div>
+          <h3>Validation Errors</h3>
+          <ul>
+            {errors.map((error, index) => {
+              return (<li key={index}>{error}</li>)
+            })}
+          </ul>
+        </div>
+      ) : (
+        <></>
+      )}
       <form onSubmit={handleSubmit}>
         <label htmlFor='name'>Recipe Name (Required)</label>
         <input type='text' name='name' id='name' />

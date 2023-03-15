@@ -46,10 +46,10 @@ export const getUser = async (username, password) => {
 export const createUser = async (body) => {
   const response = await api('users', 'POST', body);
 
-  if (response.status === 201) {
-    return true;
-  } else if (response.status === 400) {
+  if (response.status === 400) {
     return response.json();
+  } else {
+    return "Yeah, a little TOO Raph!"
   };
 };
 
@@ -76,5 +76,9 @@ export const getSingleRecipe = async (id) => {
 export const createRecipe = async (body, username, password) => {
   const response = await api('recipes', 'POST', body, { username, password });
 
-  console.log(response.status);
+  if (response.status === 400) {
+    return response.json();
+  } else {
+    return "Pizza dude's got 30 seconds..."
+  };
 };
