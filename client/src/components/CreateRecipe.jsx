@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 import { createRecipe } from '../utilities/ApiCalls';
 import { cleanFormData } from '../utilities/DataClean';
@@ -9,6 +9,7 @@ const CreateRecipe = () => {
   const { user } = useContext(UserContext);
   const [ingredients, setIngredients] = useState([]);
   const [directions, setDirections] = useState([]);
+  const navigate = useNavigate();
 
   function handleAdd(string) {
     let values;
@@ -51,7 +52,9 @@ const CreateRecipe = () => {
     e.preventDefault();
     let body = cleanFormData(e.target, ingredients, directions);
     body.userId = user.id;
+    console.log(body);
     createRecipe(body, user.username, user.password);
+    navigate('/');
   };
 
   return (
@@ -88,7 +91,7 @@ const CreateRecipe = () => {
           <button className='add-ingredient-btn' type='button' onClick={() => handleAdd('ingredient')}>+</button>
           {ingredients.map((data, index) => {
             return (
-              <div className='ingredient-container' key={crypto.randomUUID()}>
+              <div className='ingredient-container' key={index}>
                 <input type='text' name='ingredient' value={data} onChange={e => handleChange(e, index, 'ingredient')} />
                 <button className='remove-ingredient-btn' type='button' onClick={() => handleDelete(index, 'ingredient')}>X</button>
               </div>
@@ -100,7 +103,7 @@ const CreateRecipe = () => {
           <button className='add-direction-btn' type='button' onClick={() => handleAdd('direction')}>+</button>
           {directions.map((data, index) => {
             return (
-              <div className='direction-container' key={crypto.randomUUID()}>
+              <div className='direction-container' key={index}>
                 <input type='text' name='direction' value={data} onChange={e => handleChange(e, index, 'direction')} />
                 <button className='remove-direction-btn' type='button' onClick={() => handleDelete(index, 'direction')}>X</button>
               </div>

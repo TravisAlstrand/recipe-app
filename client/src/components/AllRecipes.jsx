@@ -23,6 +23,9 @@ const AllRecipes = () => {
             <p>{recipe.recipeName}</p>
           </Link>);
       })}
+      <Link to={'/recipes/create'}>
+        <p>Create New Recipe</p>
+      </Link>
     </>
   );
 };

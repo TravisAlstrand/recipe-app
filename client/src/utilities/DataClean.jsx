@@ -26,13 +26,13 @@ export function cleanFormData(form, ingredients, directions) {
   };
   // ingredients
   if (ingredients.length) {
-    body.ingredients = `* ${ingredients.join(' * ')}`;
+    body.ingredients = `* ${ingredients.join(' \n* ')}`;
   } else {
     body.ingredients = '';
   };
   // directions
   if (directions.length) {
-    body.directions = `* ${directions.join(' * ')}`;
+    body.directions = `* ${directions.join(' \n* ')}`;
   } else {
     body.directions = '';
   };
