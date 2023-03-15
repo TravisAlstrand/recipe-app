@@ -23,10 +23,11 @@ router.post('/', asyncHandler(async (req, res) => {
 // GET USER
 router.get('/', authUser, asyncHandler(async (req, res) => {
   const user = req.currentUser;
-  console.log(user);
 
   if (user) {
+    console.log(user)
     res.status(200).json({
+      "id": user.id,
       "username": user.username
     });
   } else {

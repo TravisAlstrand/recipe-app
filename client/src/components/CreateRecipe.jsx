@@ -49,7 +49,8 @@ const CreateRecipe = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    const body = cleanFormData(e.target, ingredients, directions);
+    let body = cleanFormData(e.target, ingredients, directions);
+    body.userId = user.id;
     createRecipe(body, user.username, user.password);
   };
 
@@ -87,7 +88,7 @@ const CreateRecipe = () => {
           <button className='add-ingredient-btn' type='button' onClick={() => handleAdd('ingredient')}>+</button>
           {ingredients.map((data, index) => {
             return (
-              <div className='ingredient-container' key={index}>
+              <div className='ingredient-container' key={crypto.randomUUID()}>
                 <input type='text' name='ingredient' value={data} onChange={e => handleChange(e, index, 'ingredient')} />
                 <button className='remove-ingredient-btn' type='button' onClick={() => handleDelete(index, 'ingredient')}>X</button>
               </div>
@@ -99,7 +100,7 @@ const CreateRecipe = () => {
           <button className='add-direction-btn' type='button' onClick={() => handleAdd('direction')}>+</button>
           {directions.map((data, index) => {
             return (
-              <div className='direction-container' key={index}>
+              <div className='direction-container' key={crypto.randomUUID()}>
                 <input type='text' name='direction' value={data} onChange={e => handleChange(e, index, 'direction')} />
                 <button className='remove-direction-btn' type='button' onClick={() => handleDelete(index, 'direction')}>X</button>
               </div>

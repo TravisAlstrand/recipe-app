@@ -52,7 +52,8 @@ module.exports = (sequelize) => {
     User.hasMany(models.Recipe, {
       as: 'recipeCreator',
       foreignKey: {
-        fieldName: 'userId'
+        fieldName: 'userId',
+        allowNull: false
       }
     });
   };

@@ -16,7 +16,6 @@ const SignIn = () => {
     const username = usernameInput.current.value;
     const password = passwordInput.current.value;
     const response = await actions.signIn(username, password);
-    console.log(response);
     if (response === undefined) {
       navigate('/');
     } else {

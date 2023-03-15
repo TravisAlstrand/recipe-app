@@ -50,7 +50,8 @@ module.exports = (sequelize) => {
     Recipe.belongsTo(models.User, {
       as: 'recipeCreator',
       foreignKey: {
-        fieldName: 'userId'
+        fieldName: 'userId',
+        allowNull: false
       }
     });
   };

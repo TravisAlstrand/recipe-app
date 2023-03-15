@@ -76,5 +76,5 @@ export const getSingleRecipe = async (id) => {
 export const createRecipe = async (body, username, password) => {
   const response = await api('recipes', 'POST', body, { username, password });
 
-  console.log(response);
+  console.log(response.status);
 };
