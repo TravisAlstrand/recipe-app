@@ -1,13 +1,17 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../context/UserContext';
+import { createRecipe } from '../utilities/ApiCalls';
+import { cleanFormData } from '../utilities/DataClean';
 
 const CreateRecipe = () => {
 
-  const recipeName = useRef('');
+  const { user } = useContext(UserContext);
   const [ingredients, setIngredients] = useState([]);
   const [directions, setDirections] = useState([]);
+  const recNameInput = useRef('');
 
-  function addField(string) {
+  function handleAdd(string) {
     let values;
     if (string === 'ingredient') {
       values = [...ingredients, []];
@@ -46,8 +50,8 @@ const CreateRecipe = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log('submitted');
-    console.log(recipeName.current.value);
+    const body = cleanFormData(e.target, ingredients, directions);
+    createRecipe(body, user.username, user.password);
   };
 
   return (
@@ -55,17 +59,10 @@ const CreateRecipe = () => {
       <h1>Create Recipe</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor='name'>Recipe Name (Required)</label>
-        <input type='text' name='name' id='name' ref={recipeName} />
-        <label htmlFor='difficulty'>Difficulty</label>
-        <select name='difficulty' id='difficulty'>
-          <option hidden>Select a Difficulty</option>
-          <option>Easy</option>
-          <option>Medium</option>
-          <option>Hard</option>
-        </select>
-        <label htmlFor='ethnicity'>Ethnic Type</label>
-        <select name='ethnicity' id='ethnicity'>
-          <option hidden>Select an Ethnic Type</option>
+        <input type='text' name='name' id='name' ref={recNameInput} />
+        <label htmlFor='type'>Type</label>
+        <select name='type' id='type'>
+          <option hidden>Select a Type</option>
           <option>Mexican</option>
           <option>Asian</option>
           <option>Italian</option>
@@ -74,14 +71,21 @@ const CreateRecipe = () => {
           <option>Breakfast</option>
           <option>Other</option>
         </select>
+        <label htmlFor='difficulty'>Difficulty</label>
+        <select name='difficulty' id='difficulty'>
+          <option hidden>Select a Difficulty</option>
+          <option>Easy</option>
+          <option>Medium</option>
+          <option>Hard</option>
+        </select>
         <p>Slow Cooker?</p>
         <label htmlFor='yesSlow'>Yes</label>
         <input type='radio' name='slowCooker' id='yesSlow' />
         <label htmlFor='noSlow'>No</label>
         <input type='radio' name='slowCooker' id='noSlow' />
-        <div className='all-ingredients-container'>
+        <div className='all-ingredients-container' id='allIngredientsContainer'>
           <p>Ingredients</p>
-          <button className='add-ingredient-btn' type='button' onClick={() => addField('ingredient')}>+</button>
+          <button className='add-ingredient-btn' type='button' onClick={() => handleAdd('ingredient')}>+</button>
           {ingredients.map((data, index) => {
             return (
               <div className='ingredient-container' key={index}>
@@ -91,9 +95,9 @@ const CreateRecipe = () => {
             );
           })}
         </div>
-        <div className='all-ingredients-container'>
+        <div className='all-directions-container'>
           <p>Directions</p>
-          <button className='add-direction-btn' type='button' onClick={() => addField('direction')}>+</button>
+          <button className='add-direction-btn' type='button' onClick={() => handleAdd('direction')}>+</button>
           {directions.map((data, index) => {
             return (
               <div className='direction-container' key={index}>

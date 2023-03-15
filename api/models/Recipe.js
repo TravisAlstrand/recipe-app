@@ -20,7 +20,7 @@ module.exports = (sequelize) => {
         }
       }
     },
-    ethnicType: {
+    type: {
       type: DataTypes.STRING
     },
     difficulty: {
