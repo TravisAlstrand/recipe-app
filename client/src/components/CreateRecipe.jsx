@@ -1,4 +1,4 @@
-import { useRef, useState, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 import { createRecipe } from '../utilities/ApiCalls';
@@ -9,7 +9,6 @@ const CreateRecipe = () => {
   const { user } = useContext(UserContext);
   const [ingredients, setIngredients] = useState([]);
   const [directions, setDirections] = useState([]);
-  const recNameInput = useRef('');
 
   function handleAdd(string) {
     let values;
@@ -59,7 +58,7 @@ const CreateRecipe = () => {
       <h1>Create Recipe</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor='name'>Recipe Name (Required)</label>
-        <input type='text' name='name' id='name' ref={recNameInput} />
+        <input type='text' name='name' id='name' />
         <label htmlFor='type'>Type</label>
         <select name='type' id='type'>
           <option hidden>Select a Type</option>
