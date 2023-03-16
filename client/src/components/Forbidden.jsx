@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 
-const PageNotFound = () => {
+const Forbidden = () => {
   return (
     <>
-      <h1>Page Not Found</h1>
+      <h1>Forbidden</h1>
       <Link to='/'>
         <button type='button'>Home</button>
       </Link>
@@ -11,4 +11,4 @@ const PageNotFound = () => {
   );
 };
 
-export default PageNotFound;
+export default Forbidden;

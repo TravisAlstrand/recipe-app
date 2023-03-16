@@ -11,6 +11,7 @@ import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import SignOut from './components/SignOut';
 import PageNotFound from './components/PageNotFound';
+import Forbidden from './components/Forbidden';
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
         <Route path='/users/signin' element={<SignIn />} />
         <Route path='/users/signup' element={<SignUp />} />
         <Route path='/users/signout' element={<SignOut />} />
+        <Route path='/forbidden' element={<Forbidden />} />
         <Route path='*' element={<PageNotFound />} />
       </Routes>
     </>
