@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { UserContext } from '../context/UserContext';
-import { getSingleRecipe } from "../utilities/ApiCalls";
+import { getSingleRecipe, updateRecipe } from "../utilities/ApiCalls";
 import { cleanFormData, prepSelectData, splitString } from "../utilities/DataClean";
 
 const EditRecipe = () => {
@@ -55,15 +55,19 @@ const EditRecipe = () => {
     e.preventDefault();
     let body = cleanFormData(e.target, ingredients, directions);
     body.userId = user.id;
+    body.id = recipe.id;
     console.log(body);
-    // createRecipe(body, user.username, user.password)
-    //   .then(res => {
-    //     if (res.errors) {
-    //       setErrors(res.errors);
-    //     } else {
-    //       navigate('/');
-    //     };
-    //   });
+    console.log(recipe)
+    updateRecipe(body, user.username, user.password)
+      .then(res => {
+        if (res.errors) {
+          setErrors(res.errors);
+        } else if (res.status === 403) {
+          navigate('/forbidden');
+        } else {
+          navigate(`/recipes/${recipe.id}`);
+        };
+      });
   };
 
   function fillForm() {

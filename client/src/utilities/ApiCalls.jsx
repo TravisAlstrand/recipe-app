@@ -82,3 +82,15 @@ export const createRecipe = async (body, username, password) => {
     return "Pizza dude's got 30 seconds..."
   };
 };
+
+export const updateRecipe = async (body, username, password) => {
+  const response = await api(`recipes/${body.id}`, 'PUT', body, { username, password });
+
+  if (response.status === 400) {
+    return response.json();
+  } else if (response.status === 403) {
+    return response;
+  } else {
+    return "Is Schwarzenegger hard to spell?"
+  };
+};
