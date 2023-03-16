@@ -1,8 +1,8 @@
 import { useEffect, useState, useContext } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { UserContext } from '../context/UserContext';
 import { getSingleRecipe } from "../utilities/ApiCalls";
-import { prepSelectData, splitString } from "../utilities/DataClean";
+import { cleanFormData, prepSelectData, splitString } from "../utilities/DataClean";
 
 const EditRecipe = () => {
   const { user } = useContext(UserContext);
@@ -10,7 +10,9 @@ const EditRecipe = () => {
   const [directions, setDirections] = useState([]);
   const [recipe, setRecipe] = useState({});
   const [errors, setErrors] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const params = useParams();
+  const navigate = useNavigate();
 
   function handleAdd(string) {
     let values;
@@ -53,6 +55,7 @@ const EditRecipe = () => {
     e.preventDefault();
     let body = cleanFormData(e.target, ingredients, directions);
     body.userId = user.id;
+    console.log(body);
     // createRecipe(body, user.username, user.password)
     //   .then(res => {
     //     if (res.errors) {
@@ -108,6 +111,7 @@ const EditRecipe = () => {
       const cookToSelect = prepSelectData(cookOptions, splitCook[1]);
       cookOptions[cookToSelect].selected = true;
     };
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -115,17 +119,17 @@ const EditRecipe = () => {
     async function getRecipe() {
       await getSingleRecipe(params.id)
         .then(res => {
-          if (res.status === 404) {
+          if (res === 404) {
             navigate('/notfound')
           } else {
             setRecipe(res);
           };
         });
+      fillForm();
     };
 
     getRecipe();
-    fillForm();
-  }, []);
+  }, [isLoading]);
 
   return (
     <>
@@ -158,7 +162,7 @@ const EditRecipe = () => {
           <option>Other</option>
         </select>
         <label htmlFor='difficulty'>Difficulty</label>
-        <select name='difficulty' id='difficulty' >
+        <select name='difficulty' id='difficulty'>
           <option hidden>Select a Difficulty</option>
           <option>Easy</option>
           <option>Medium</option>
