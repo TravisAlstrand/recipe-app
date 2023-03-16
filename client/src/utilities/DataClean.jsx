@@ -52,3 +52,31 @@ export function cleanFormData(form, ingredients, directions) {
   body.cookTime = cookString;
   return body;
 };
+
+export function prepSelectData(optionsList, recipeValue) {
+  const array = Array.from(optionsList);
+  let index = 0;
+  array.forEach(option => {
+    if (option.value === recipeValue) {
+      index = array.indexOf(option);
+    };
+  });
+  return index;
+};
+
+export function splitString(string) {
+  if (string[0] !== '*') {
+    return string.split(' ');
+  } else {
+    const stringArray = string.split('* ');
+    const newArray = [];
+    stringArray.forEach(string => {
+      const newString = string.replace('\n', '');
+      newArray.push(newString);
+    });
+    if (newArray[0] === '') {
+      newArray.splice(0, 1);
+    };
+    return newArray;
+  };
+};

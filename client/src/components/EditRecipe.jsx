@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useState, useContext } from "react";
+import { useParams, Link } from "react-router-dom";
 import { UserContext } from '../context/UserContext';
 import { getSingleRecipe } from "../utilities/ApiCalls";
+import { prepSelectData, splitString } from "../utilities/DataClean";
 
 const EditRecipe = () => {
   const { user } = useContext(UserContext);
@@ -52,14 +53,61 @@ const EditRecipe = () => {
     e.preventDefault();
     let body = cleanFormData(e.target, ingredients, directions);
     body.userId = user.id;
-    createRecipe(body, user.username, user.password)
-      .then(res => {
-        if (res.errors) {
-          setErrors(res.errors);
-        } else {
-          navigate('/');
-        };
-      });
+    // createRecipe(body, user.username, user.password)
+    //   .then(res => {
+    //     if (res.errors) {
+    //       setErrors(res.errors);
+    //     } else {
+    //       navigate('/');
+    //     };
+    //   });
+  };
+
+  function fillForm() {
+    // type
+    const typeOptions = document.querySelector('#type').children;
+    const typeToSelect = prepSelectData(typeOptions, recipe.type);
+    typeOptions[typeToSelect].selected = true;
+    // difficulty
+    const diffOptions = document.querySelector('#difficulty').children;
+    const diffToSelect = prepSelectData(diffOptions, recipe.difficulty);
+    diffOptions[diffToSelect].selected = true;
+    // isSlowCooker
+    const yesRadio = document.querySelector('#yesSlow');
+    const noRadio = document.querySelector('#noSlow');
+    if (recipe.isSlowCooker === 'TRUE') {
+      yesRadio.checked = true;
+    } else if (recipe.isSlowCooker === 'FALSE') {
+      noRadio.checked = true;
+    };
+    // ingredients 
+    if (recipe.ingredients) {
+      const splitIngredients = splitString(recipe.ingredients);
+      setIngredients(splitIngredients);
+    };
+    // directions
+    if (recipe.directions) {
+      const splitDirections = splitString(recipe.directions);
+      setDirections(splitDirections);
+    };
+    // prepTime
+    if (recipe.prepTime) {
+      const prepInput = document.querySelector('#prepTime');
+      const splitPrep = splitString(recipe.prepTime);
+      prepInput.defaultValue = splitPrep[0];
+      const prepOptions = document.querySelector('#prepTimeUnit').children;
+      const prepToSelect = prepSelectData(prepOptions, splitPrep[1]);
+      prepOptions[prepToSelect].selected = true;
+    };
+    // cookTime
+    if (recipe.cookTime) {
+      const cookInput = document.querySelector('#cookTime');
+      const splitCook = splitString(recipe.cookTime);
+      cookInput.defaultValue = splitCook[0];
+      const cookOptions = document.querySelector('#cookTimeUnit').children;
+      const cookToSelect = prepSelectData(cookOptions, splitCook[1]);
+      cookOptions[cookToSelect].selected = true;
+    };
   };
 
   useEffect(() => {
@@ -67,7 +115,7 @@ const EditRecipe = () => {
     async function getRecipe() {
       await getSingleRecipe(params.id)
         .then(res => {
-          if (res === 404) {
+          if (res.status === 404) {
             navigate('/notfound')
           } else {
             setRecipe(res);
@@ -76,6 +124,7 @@ const EditRecipe = () => {
     };
 
     getRecipe();
+    fillForm();
   }, []);
 
   return (
@@ -93,9 +142,10 @@ const EditRecipe = () => {
       ) : (
         <></>
       )}
+      <p>Created By: {recipe.recipeCreator?.username}</p>
       <form onSubmit={handleSubmit}>
         <label htmlFor='name'>Recipe Name (Required)</label>
-        <input type='text' name='name' id='name' />
+        <input type='text' name='name' id='name' defaultValue={recipe.recipeName} />
         <label htmlFor='type'>Type</label>
         <select name='type' id='type'>
           <option hidden>Select a Type</option>
@@ -108,7 +158,7 @@ const EditRecipe = () => {
           <option>Other</option>
         </select>
         <label htmlFor='difficulty'>Difficulty</label>
-        <select name='difficulty' id='difficulty'>
+        <select name='difficulty' id='difficulty' >
           <option hidden>Select a Difficulty</option>
           <option>Easy</option>
           <option>Medium</option>
@@ -144,21 +194,21 @@ const EditRecipe = () => {
           })}
         </div>
         <label htmlFor='prepTime'>Prep Time</label>
-        <input type='text' name='prepTime' id='prepTime'></input>
+        <input type='text' name='prepTime' id='prepTime' />
         <select id='prepTimeUnit' name='prepTimeUnit'>
           <option hidden>Select a Time Unit</option>
           <option>Minutes</option>
           <option>Hours</option>
         </select>
         <label htmlFor='cookTime'>Cook Time</label>
-        <input type='text' name='cookTime' id='cookTime'></input>
+        <input type='text' name='cookTime' id='cookTime' />
         <select id='cookTimeUnit' name='cookTimeUnit'>
           <option hidden>Select a Time Unit</option>
           <option>Minutes</option>
           <option>Hours</option>
         </select>
         <button type='submit'>Submit</button>
-        <Link to='/'>
+        <Link to={`/recipes/${recipe.id}`}>
           <button>Cancel</button>
         </Link>
       </form>

@@ -33,7 +33,7 @@ const RecipeDetail = () => {
             <h1>{recipe.recipeName}</h1>
             <p>Created By: {recipe.recipeCreator?.username}</p>
             <p>Difficulty: {recipe.difficulty}</p>
-            <p>Type: {recipe.ethnicType}</p>
+            <p>Type: {recipe.type}</p>
             <p>Slow Cooker: {recipe.isSlowCooker === 'TRUE' ? 'Yes' : (
               recipe.isSlowCooker === 'FALSE' ? 'No' : ''
             )}
@@ -46,10 +46,13 @@ const RecipeDetail = () => {
             <p>Cook Time: {recipe.cookTime}</p>
           </>
         ) : (
-          <h1>Recipe Details</h1>
+          <h1>Loading...</h1>
         )}
       <Link to={'/'}>
         <button type='button'>Home</button>
+      </Link>
+      <Link to={`/recipes/${recipe.id}/edit`}>
+        <button type='button'>Edit</button>
       </Link>
     </>
   );
