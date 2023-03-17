@@ -36,7 +36,6 @@ const CreateRecipe = () => {
         values[index][2] = e.target.value;
       };
       setIngredients(values);
-      console.log(ingredients)
     } else if (string === 'direction') {
       values = [...directions];
       values[index] = e.target.value;

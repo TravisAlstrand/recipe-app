@@ -26,7 +26,10 @@ export function cleanFormData(form, ingredients, directions) {
   };
   // ingredients
   if (ingredients.length) {
-    body.ingredients = `* ${ingredients.join(' \n* ')}`;
+    const newIngredients = ingredients.map(ingredient => {
+      return ingredient.join(' ');
+    });
+    body.ingredients = `* ${newIngredients.join(' \n* ')}`;
   } else {
     body.ingredients = '';
   };
