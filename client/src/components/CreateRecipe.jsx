@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 import { createRecipe } from '../utilities/ApiCalls';
 import { cleanFormData } from '../utilities/DataClean';
+import IngredientDiv from './IngredientDiv';
 
 const CreateRecipe = () => {
 
@@ -27,8 +28,15 @@ const CreateRecipe = () => {
     let values;
     if (string === 'ingredient') {
       values = [...ingredients];
-      values[index] = e.target.value;
+      if (e.target.id === `amount${index}`) {
+        values[index][0] = e.target.value;
+      } else if (e.target.id === `amountUnit${index}`) {
+        values[index][1] = e.target.value;
+      } else if (e.target.id === `item${index}`) {
+        values[index][2] = e.target.value;
+      };
       setIngredients(values);
+      console.log(ingredients)
     } else if (string === 'direction') {
       values = [...directions];
       values[index] = e.target.value;
@@ -109,10 +117,7 @@ const CreateRecipe = () => {
           <button className='add-ingredient-btn' type='button' onClick={() => handleAdd('ingredient')}>+</button>
           {ingredients.map((data, index) => {
             return (
-              <div className='ingredient-container' key={index}>
-                <input type='text' name='ingredient' value={data} onChange={e => handleChange(e, index, 'ingredient')} />
-                <button className='remove-ingredient-btn' type='button' onClick={() => handleDelete(index, 'ingredient')}>X</button>
-              </div>
+              <IngredientDiv key={index} index={index} data={data} handleChange={handleChange} handleDelete={handleDelete} />
             );
           })}
         </div>
