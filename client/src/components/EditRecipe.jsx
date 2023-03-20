@@ -2,7 +2,8 @@ import { useEffect, useState, useContext } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { UserContext } from '../context/UserContext';
 import { getSingleRecipe, updateRecipe } from "../utilities/ApiCalls";
-import { cleanFormData, prepSelectData, splitString } from "../utilities/DataClean";
+import { cleanFormData, prepSelectData, prepIngSelectData, splitString, cleanIngredients } from "../utilities/DataClean";
+import IngredientDiv from "./IngredientDiv";
 
 const EditRecipe = () => {
   const { user } = useContext(UserContext);
@@ -29,7 +30,13 @@ const EditRecipe = () => {
     let values;
     if (string === 'ingredient') {
       values = [...ingredients];
-      values[index] = e.target.value;
+      if (e.target.id.includes('item')) {
+        values[index][2] = e.target.value;
+      } else if (e.target.id.includes('Unit')) {
+        values[index][1] = e.target.value;
+      } else if (e.target.id.includes('Num')) {
+        values[index][0] = e.target.value;
+      };
       setIngredients(values);
     } else if (string === 'direction') {
       values = [...directions];
@@ -53,11 +60,14 @@ const EditRecipe = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
+    // trim whitespace / add hyphens to spaces
+    const trimmedIngredients = cleanIngredients(ingredients);
+    setIngredients(trimmedIngredients);
+    // compile body for request
     let body = cleanFormData(e.target, ingredients, directions);
     body.userId = user.id;
     body.id = recipe.id;
     console.log(body);
-    console.log(recipe)
     updateRecipe(body, user.username, user.password)
       .then(res => {
         if (res.errors) {
@@ -89,18 +99,36 @@ const EditRecipe = () => {
     };
     // ingredients 
     if (recipe.ingredients) {
-      const splitIngredients = splitString(recipe.ingredients);
+      const splitIngredients = splitString(recipe.ingredients, 'ingredients');
+      ingredients.forEach((ingredient, index) => {
+        // ingredient amount
+        const amountInput = document.querySelector(`#amountNum${index}`);
+        if (ingredient[0].includes('-')) {
+          ingredient[0] = ingredient[2].replace('-', ' ');
+        };
+        amountInput.defaultValue = ingredient[0];
+        // ingredient amount unit
+        const amountUnitOptions = document.querySelector(`#amountUnit${index}`).children;
+        const { newIndex, newArray } = prepIngSelectData(amountUnitOptions, ingredient[1]);
+        newArray[newIndex].selected = true;
+        // ingredient item
+        const itemInput = document.querySelector(`#item${index}`);
+        if (ingredient[2].includes('-')) {
+          ingredient[2] = ingredient[2].replace('-', ' ');
+        };
+        itemInput.defaultValue = ingredient[2];
+      });
       setIngredients(splitIngredients);
     };
     // directions
     if (recipe.directions) {
-      const splitDirections = splitString(recipe.directions);
+      const splitDirections = splitString(recipe.directions, 'directions');
       setDirections(splitDirections);
     };
     // prepTime
     if (recipe.prepTime) {
       const prepInput = document.querySelector('#prepTime');
-      const splitPrep = splitString(recipe.prepTime);
+      const splitPrep = splitString(recipe.prepTime, 'prep/cook');
       prepInput.defaultValue = splitPrep[0];
       const prepOptions = document.querySelector('#prepTimeUnit').children;
       const prepToSelect = prepSelectData(prepOptions, splitPrep[1]);
@@ -109,7 +137,7 @@ const EditRecipe = () => {
     // cookTime
     if (recipe.cookTime) {
       const cookInput = document.querySelector('#cookTime');
-      const splitCook = splitString(recipe.cookTime);
+      const splitCook = splitString(recipe.cookTime, 'prep/cook');
       cookInput.defaultValue = splitCook[0];
       const cookOptions = document.querySelector('#cookTimeUnit').children;
       const cookToSelect = prepSelectData(cookOptions, splitCook[1]);
@@ -182,10 +210,7 @@ const EditRecipe = () => {
           <button className='add-ingredient-btn' type='button' onClick={() => handleAdd('ingredient')}>+</button>
           {ingredients.map((data, index) => {
             return (
-              <div className='ingredient-container' key={index}>
-                <input type='text' name='ingredient' value={data} onChange={e => handleChange(e, index, 'ingredient')} />
-                <button className='remove-ingredient-btn' type='button' onClick={() => handleDelete(index, 'ingredient')}>X</button>
-              </div>
+              <IngredientDiv key={index} index={index} data={data} handleChange={handleChange} handleDelete={handleDelete} />
             );
           })}
         </div>

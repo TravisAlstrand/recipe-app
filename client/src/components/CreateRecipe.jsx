@@ -2,7 +2,7 @@ import { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 import { createRecipe } from '../utilities/ApiCalls';
-import { cleanFormData } from '../utilities/DataClean';
+import { cleanFormData, cleanIngredients } from '../utilities/DataClean';
 import IngredientDiv from './IngredientDiv';
 
 const CreateRecipe = () => {
@@ -28,7 +28,7 @@ const CreateRecipe = () => {
     let values;
     if (string === 'ingredient') {
       values = [...ingredients];
-      if (e.target.id === `amount${index}`) {
+      if (e.target.id === `amountNum${index}`) {
         values[index][0] = e.target.value;
       } else if (e.target.id === `amountUnit${index}`) {
         values[index][1] = e.target.value;
@@ -36,6 +36,7 @@ const CreateRecipe = () => {
         values[index][2] = e.target.value;
       };
       setIngredients(values);
+      console.log(ingredients)
     } else if (string === 'direction') {
       values = [...directions];
       values[index] = e.target.value;
@@ -58,6 +59,10 @@ const CreateRecipe = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
+    // trim whitespace / add hyphens to spaces
+    const trimmedIngredients = cleanIngredients(ingredients);
+    setIngredients(trimmedIngredients);
+    // compile body for request
     let body = cleanFormData(e.target, ingredients, directions);
     body.userId = user.id;
     createRecipe(body, user.username, user.password)

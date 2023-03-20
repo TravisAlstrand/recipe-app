@@ -1,3 +1,19 @@
+// TO PREP FOR DATABASE
+
+export function cleanIngredients(ingredients) {
+  const trimmedIngredients = [...ingredients];
+  trimmedIngredients.forEach((ingredient) => {
+    ingredient.forEach((section, index) => {
+      let trimmed = section.trim();
+      if (trimmed.includes(' ')) {
+        trimmed = trimmed.replace(/\s+/g, '-');
+      };
+      ingredient[index] = trimmed;
+    });
+  });
+  return trimmedIngredients;
+};
+
 export function cleanFormData(form, ingredients, directions) {
   // recipe name
   let body = {};
@@ -56,8 +72,23 @@ export function cleanFormData(form, ingredients, directions) {
   return body;
 };
 
+// TO POPULATE EDIT FORM
+
 export function prepSelectData(optionsList, recipeValue) {
   const array = Array.from(optionsList);
+  // start for ingredient unit select
+  array.forEach((child, index) => {
+    if (child.tagName === 'OPTGROUP') {
+      const options = child.children
+      for (let i = 0; i < options.length; i++) {
+        array.push(options[i])
+      };
+    };
+  });
+  if (array[1].tagName === 'OPTGROUP') {
+    array.splice(1, 3);
+  };
+  // end for ingredient unit select
   let index = 0;
   array.forEach(option => {
     if (option.value === recipeValue) {
@@ -67,18 +98,62 @@ export function prepSelectData(optionsList, recipeValue) {
   return index;
 };
 
-export function splitString(string) {
-  if (string[0] !== '*') {
-    return string.split(' ');
+export function prepIngSelectData(optionsList, recipeValue) {
+  const newArray = Array.from(optionsList);
+
+  newArray.forEach((child, index) => {
+    if (child.tagName === 'OPTGROUP') {
+      const options = child.children
+      for (let i = 0; i < options.length; i++) {
+        newArray.push(options[i])
+      };
+    };
+  });
+
+  if (newArray[1].tagName === 'OPTGROUP') {
+    newArray.splice(1, 3);
+  };
+
+  let newIndex = 0;
+  newArray.forEach(option => {
+    if (option.value === recipeValue) {
+      newIndex = newArray.indexOf(option);
+    };
+  });
+  return { newIndex, newArray };
+}
+
+export function splitString(stringToSplit, keyString) {
+  if (keyString === 'prep/cook') {
+    return stringToSplit.split(' ');
   } else {
-    const stringArray = string.split('* ');
-    const newArray = [];
+    const stringArray = stringToSplit.split('* ');
+    let newArray = [];
     stringArray.forEach(string => {
-      const newString = string.replace('\n', '');
-      newArray.push(newString);
+      if (string.includes('\n')) {
+        let newString = string.trim();
+        newArray.push(newString);
+      } else {
+        newArray.push(string);
+      };
     });
     if (newArray[0] === '') {
       newArray.splice(0, 1);
+    };
+    // remove 1st empty array item
+    if (keyString === 'ingredients') {
+      newArray = newArray.map(string => {
+        return string.split(' ');
+      });
+      // replace hyphens with spaces
+      newArray.forEach(ingredient => {
+        ingredient.forEach((section, index) => {
+          if (section.includes('-')) {
+            let cleanedString = section.replace(/-/g, ' ');
+            ingredient[index] = cleanedString;
+          };
+        });
+      });
     };
     return newArray;
   };

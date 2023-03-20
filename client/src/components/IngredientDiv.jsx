@@ -1,8 +1,8 @@
 const IngredientDiv = ({ index, handleChange, handleDelete }) => {
   return (
     <div className='ingredient-container' key={index}>
-      <label htmlFor={`amount${index}`}>Amount</label>
-      <input type='text' name='ingredient' id={`amount${index}`} onChange={e => handleChange(e, index, 'ingredient')} />
+      <label htmlFor={`amountNum${index}`}>Amount</label>
+      <input type='text' name='ingredient' id={`amountNum${index}`} onChange={e => handleChange(e, index, 'ingredient')} />
       <label htmlFor={`amountUnit${index}`}>Unit</label>
       <select name={`amountUnit${index}`} id={`amountUnit${index}`} onChange={e => handleChange(e, index, 'ingredient')}>
         <option hidden>Choose a Unit</option>
