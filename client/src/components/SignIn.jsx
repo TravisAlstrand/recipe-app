@@ -44,6 +44,10 @@ const SignIn = () => {
           <button>Cancel</button>
         </Link>
       </form>
+      <p>Don't have an account yet?</p>
+      <Link to='/users/signup'>
+        <button>Sign Up</button>
+      </Link>
     </>
   );
 };

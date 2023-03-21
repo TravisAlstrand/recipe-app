@@ -151,11 +151,13 @@ const EditRecipe = () => {
         .then(res => {
           if (res === 404) {
             navigate('/notfound')
+          } else if (user !== null && user.id !== res.userId) {
+            navigate('/forbidden');
           } else {
             setRecipe(res);
+            fillForm();
           };
         });
-      fillForm();
     };
 
     getRecipe();

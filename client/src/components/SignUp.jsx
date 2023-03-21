@@ -57,6 +57,10 @@ const SignUp = () => {
           <button>Cancel</button>
         </Link>
       </form>
+      <p>Already have an account?</p>
+      <Link to='/users/signin'>
+        <button>Sign In</button>
+      </Link>
     </>
   );
 };
