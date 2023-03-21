@@ -1,11 +1,12 @@
 import { useRef, useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 
 const SignIn = () => {
 
   const { actions } = useContext(UserContext)
   const navigate = useNavigate();
+  const location = useLocation();
   const usernameInput = useRef('');
   const passwordInput = useRef('');
   const [error, setError] = useState('');
@@ -17,7 +18,11 @@ const SignIn = () => {
     const password = passwordInput.current.value;
     const response = await actions.signIn(username, password);
     if (response === undefined) {
-      navigate('/');
+      if (location.state?.from) {
+        navigate(location.state.from);
+      } else {
+        navigate('/');
+      };
     } else {
       setError(response);
     };
