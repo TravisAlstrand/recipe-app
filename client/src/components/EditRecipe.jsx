@@ -60,7 +60,7 @@ const EditRecipe = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    // trim whitespace / add hyphens to spaces
+    // trim whitespace / replace spaces with hyphens
     const trimmedIngredients = cleanIngredients(ingredients);
     setIngredients(trimmedIngredients);
     // compile body for request
@@ -97,15 +97,15 @@ const EditRecipe = () => {
     } else if (recipe.isSlowCooker === 'FALSE') {
       noRadio.checked = true;
     };
+    /* ========================================================================================================== */
     // ingredients 
     if (recipe.ingredients) {
-      const splitIngredients = splitString(recipe.ingredients, 'ingredients');
+      let splitIngredients = splitString(recipe.ingredients, 'ingredients');
+      setIngredients(splitIngredients);
+      console.log(ingredients);
       ingredients.forEach((ingredient, index) => {
         // ingredient amount
         const amountInput = document.querySelector(`#amountNum${index}`);
-        if (ingredient[0].includes('-')) {
-          ingredient[0] = ingredient[2].replace('-', ' ');
-        };
         amountInput.defaultValue = ingredient[0];
         // ingredient amount unit
         const amountUnitOptions = document.querySelector(`#amountUnit${index}`).children;
@@ -113,13 +113,11 @@ const EditRecipe = () => {
         newArray[newIndex].selected = true;
         // ingredient item
         const itemInput = document.querySelector(`#item${index}`);
-        if (ingredient[2].includes('-')) {
-          ingredient[2] = ingredient[2].replace('-', ' ');
-        };
         itemInput.defaultValue = ingredient[2];
       });
       setIngredients(splitIngredients);
     };
+    /* ========================================================================================================== */
     // directions
     if (recipe.directions) {
       const splitDirections = splitString(recipe.directions, 'directions');
@@ -166,6 +164,7 @@ const EditRecipe = () => {
   return (
     <>
       <h1>Edit Recipe</h1>
+
       {errors.length > 0 ? (
         <div>
           <h3>Validation Errors</h3>
@@ -178,6 +177,7 @@ const EditRecipe = () => {
       ) : (
         <></>
       )}
+
       <p>Created By: {recipe.recipeCreator?.username}</p>
       <form onSubmit={handleSubmit}>
         <label htmlFor='name'>Recipe Name (Required)</label>
@@ -206,6 +206,7 @@ const EditRecipe = () => {
         <label htmlFor='noSlow'>No</label>
         <input type='radio' name='slowCooker' id='noSlow' />
         <div className='all-ingredients-container' id='allIngredientsContainer'>
+          {/* ========================================================================================================== */}
           <p>Ingredients</p>
           <button className='add-ingredient-btn' type='button' onClick={() => handleAdd('ingredient')}>+</button>
           {ingredients.map((data, index) => {
@@ -213,6 +214,7 @@ const EditRecipe = () => {
               <IngredientDiv key={index} index={index} data={data} handleChange={handleChange} handleDelete={handleDelete} />
             );
           })}
+          {/* ========================================================================================================== */}
         </div>
         <div className='all-directions-container'>
           <p>Directions</p>

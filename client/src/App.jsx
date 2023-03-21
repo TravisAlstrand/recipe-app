@@ -7,6 +7,7 @@ import AllRecipes from './components/AllRecipes';
 import CreateRecipe from './components/CreateRecipe';
 import RecipeDetail from './components/RecipeDetail';
 import EditRecipe from './components/EditRecipe';
+import PrivateRoute from './components/PrivateRoute';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import SignOut from './components/SignOut';
@@ -21,13 +22,15 @@ function App() {
       <Routes>
         <Route exact path='/' element={<Navigate replace to='/recipes' />} />
         <Route path='/recipes' element={<AllRecipes />} />
-        <Route exact path='/recipes/create' element={<CreateRecipe />} />
         <Route path='/recipes/:id' element={<RecipeDetail />} />
-        <Route path='/recipes/:id/edit' element={<EditRecipe />} />
         <Route path='/users/signin' element={<SignIn />} />
         <Route path='/users/signup' element={<SignUp />} />
         <Route path='/users/signout' element={<SignOut />} />
         <Route path='/forbidden' element={<Forbidden />} />
+        <Route element={<PrivateRoute />}>
+          <Route exact path='/recipes/create' element={<CreateRecipe />} />
+          <Route path='/recipes/:id/edit' element={<EditRecipe />} />
+        </Route>
         <Route path='*' element={<PageNotFound />} />
       </Routes>
     </>

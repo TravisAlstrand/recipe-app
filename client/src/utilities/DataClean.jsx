@@ -98,6 +98,8 @@ export function prepSelectData(optionsList, recipeValue) {
   return index;
 };
 
+/* ========================================================================================================== */
+
 export function prepIngSelectData(optionsList, recipeValue) {
   const newArray = Array.from(optionsList);
 
@@ -122,11 +124,13 @@ export function prepIngSelectData(optionsList, recipeValue) {
   });
   return { newIndex, newArray };
 }
+/* ========================================================================================================== */
 
 export function splitString(stringToSplit, keyString) {
   if (keyString === 'prep/cook') {
     return stringToSplit.split(' ');
   } else {
+    /* ========================================================================================================== */
     const stringArray = stringToSplit.split('* ');
     let newArray = [];
     stringArray.forEach(string => {
@@ -156,5 +160,6 @@ export function splitString(stringToSplit, keyString) {
       });
     };
     return newArray;
+    /* ========================================================================================================== */
   };
 };

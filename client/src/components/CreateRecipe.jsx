@@ -59,7 +59,7 @@ const CreateRecipe = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    // trim whitespace / add hyphens to spaces
+    // trim whitespace / replace spaces with hyphens
     const trimmedIngredients = cleanIngredients(ingredients);
     setIngredients(trimmedIngredients);
     // compile body for request
