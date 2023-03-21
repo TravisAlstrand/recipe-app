@@ -7,21 +7,22 @@ const Header = () => {
   const { user } = useContext(UserContext);
 
   return (
-    <nav>
-      {
-        user ? (
-          <>
-            <span>Welcome {user.username}!</span>
-            <NavLink to='/users/signout'>Sign Out</NavLink>
-          </>
-        ) :
-          <>
-            <NavLink to='/users/signin'>Sign In</NavLink>
-            <NavLink to='/users/signup'>Sign Up</NavLink>
-          </>
-      }
-
-    </nav>
+    <header>
+      <nav>
+        {
+          user ? (
+            <>
+              <span className='user-name'>Welcome {user.username}!</span>
+              <NavLink className='nav-btn' to='/users/signout'>Sign Out</NavLink>
+            </>
+          ) :
+            <>
+              <NavLink className='nav-btn' to='/users/signin'>Sign In</NavLink>
+              <NavLink className='nav-btn' to='/users/signup'>Sign Up</NavLink>
+            </>
+        }
+      </nav>
+    </header>
   );
 };
 
