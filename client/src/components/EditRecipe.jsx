@@ -147,17 +147,19 @@ const EditRecipe = () => {
   useEffect(() => {
 
     async function getRecipe() {
-      await getSingleRecipe(params.id)
-        .then(res => {
-          if (res === 404) {
-            navigate('/notfound')
-          } else if (user !== null && user.id !== res.userId) {
-            navigate('/forbidden');
-          } else {
-            setRecipe(res);
-            fillForm();
-          };
-        });
+      const res = await getSingleRecipe(params.id);
+      if (res === 404) {
+        navigate('/notfound')
+      } else if (user !== null && user.id !== res.userId) {
+        navigate('/forbidden');
+      } else {
+        setRecipe(res);
+        if (res.ingredients) {
+          let splitIngredients = splitString(res.ingredients, 'ingredients');
+          setIngredients(splitIngredients); 
+        }
+        fillForm();
+      };
     };
 
     getRecipe();

@@ -1,10 +1,10 @@
-const IngredientDiv = ({ index, handleChange, handleDelete }) => {
+const IngredientDiv = ({ index, data, handleChange, handleDelete }) => {
   return (
     <div className='ingredient-container' key={index}>
       <label htmlFor={`amountNum${index}`}>Amount</label>
-      <input type='text' name='ingredient' id={`amountNum${index}`} onChange={e => handleChange(e, index, 'ingredient')} />
+      <input type='text' name='ingredient' id={`amountNum${index}`} defaultValue={data[0]} onChange={e => handleChange(e, index, 'ingredient')} />
       <label htmlFor={`amountUnit${index}`}>Unit</label>
-      <select name={`amountUnit${index}`} id={`amountUnit${index}`} onChange={e => handleChange(e, index, 'ingredient')}>
+      <select name={`amountUnit${index}`} id={`amountUnit${index}`} onChange={e => handleChange(e, index, 'ingredient')} defaultValue={data[1]}>
         <option hidden>Choose a Unit</option>
         <optgroup label='Weight'>
           <option>Gram</option>
@@ -29,7 +29,7 @@ const IngredientDiv = ({ index, handleChange, handleDelete }) => {
         </optgroup>
       </select>
       <label htmlFor={`item${index}`}>Item</label>
-      <input type='text' name={`item${index}`} id={`item${index}`} onChange={e => handleChange(e, index, 'ingredient')} />
+      <input type='text' name={`item${index}`} id={`item${index}`} defaultValue={data[2]} onChange={e => handleChange(e, index, 'ingredient')} />
       <button className='remove-ingredient-btn' type='button' onClick={() => handleDelete(index, 'ingredient')}>X</button>
     </div>
   );
