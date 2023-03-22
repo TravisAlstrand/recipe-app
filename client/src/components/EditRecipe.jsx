@@ -63,7 +63,7 @@ const EditRecipe = () => {
     // trim whitespace / replace spaces with hyphens
     const trimmedIngredients = cleanIngredients(ingredients);
     setIngredients(trimmedIngredients);
-    // compile body for request///////////
+    // compile body for request////////
     let body = cleanFormData(e.target, ingredients, directions);
     body.userId = user.id;
     body.id = recipe.id;
