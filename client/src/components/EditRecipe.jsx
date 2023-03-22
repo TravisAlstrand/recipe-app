@@ -24,7 +24,6 @@ const EditRecipe = () => {
       } else if (user !== null && user.id !== res.userId) {
         navigate('/forbidden');
       } else {
-        console.log(res);
         setRecipe(res);
 
         updateIngDir(res);

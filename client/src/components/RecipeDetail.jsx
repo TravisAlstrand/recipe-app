@@ -2,12 +2,14 @@ import { useEffect, useState, useContext } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import { getSingleRecipe } from '../utilities/ApiCalls';
+import { hypToSpace } from '../utilities/DataClean';
 import { UserContext } from '../context/UserContext';
 
 const RecipeDetail = () => {
 
   const { user } = useContext(UserContext);
   const [recipe, setRecipe] = useState({});
+  const [ingredients, setIngredients] = useState('');
   const params = useParams();
   const navigate = useNavigate();
 
@@ -20,12 +22,20 @@ const RecipeDetail = () => {
             navigate('/notfound')
           } else {
             setRecipe(res);
+            cleanHyphens(res);
           };
         });
     };
 
     getRecipe();
   }, []);
+
+  function cleanHyphens(res) {
+    if (res.ingredients) {
+      const newIngredients = hypToSpace(res.ingredients);
+      setIngredients(newIngredients);
+    };
+  };
 
   return (
     <>
@@ -41,7 +51,7 @@ const RecipeDetail = () => {
             )}
             </p>
             <p>Ingredients:</p>
-            <ReactMarkdown>{recipe.ingredients}</ReactMarkdown>
+            <ReactMarkdown>{ingredients}</ReactMarkdown>
             <p>Directions:</p>
             <ReactMarkdown>{recipe.directions}</ReactMarkdown>
             <p>Prep Time: {recipe.prepTime}</p>

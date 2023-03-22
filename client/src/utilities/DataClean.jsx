@@ -72,65 +72,10 @@ export function cleanFormData(form, ingredients, directions) {
   return body;
 };
 
-// TO POPULATE EDIT FORM
-
-export function prepSelectData(optionsList, recipeValue) {
-  const array = Array.from(optionsList);
-  // start for ingredient unit select
-  array.forEach((child, index) => {
-    if (child.tagName === 'OPTGROUP') {
-      const options = child.children
-      for (let i = 0; i < options.length; i++) {
-        array.push(options[i])
-      };
-    };
-  });
-  if (array[1].tagName === 'OPTGROUP') {
-    array.splice(1, 3);
-  };
-  // end for ingredient unit select
-  let index = 0;
-  array.forEach(option => {
-    if (option.value === recipeValue) {
-      index = array.indexOf(option);
-    };
-  });
-  return index;
-};
-
-/* ========================================================================================================== */
-
-export function prepIngSelectData(optionsList, recipeValue) {
-  const newArray = Array.from(optionsList);
-
-  newArray.forEach((child, index) => {
-    if (child.tagName === 'OPTGROUP') {
-      const options = child.children
-      for (let i = 0; i < options.length; i++) {
-        newArray.push(options[i])
-      };
-    };
-  });
-
-  if (newArray[1].tagName === 'OPTGROUP') {
-    newArray.splice(1, 3);
-  };
-
-  let newIndex = 0;
-  newArray.forEach(option => {
-    if (option.value === recipeValue) {
-      newIndex = newArray.indexOf(option);
-    };
-  });
-  return { newIndex, newArray };
-}
-/* ========================================================================================================== */
-
 export function splitString(stringToSplit, keyString) {
   if (keyString === 'prep/cook') {
     return stringToSplit.split(' ');
   } else {
-    /* ========================================================================================================== */
     const stringArray = stringToSplit.split('* ');
     let newArray = [];
     stringArray.forEach(string => {
@@ -153,13 +98,15 @@ export function splitString(stringToSplit, keyString) {
       newArray.forEach(ingredient => {
         ingredient.forEach((section, index) => {
           if (section.includes('-')) {
-            let cleanedString = section.replace(/-/g, ' ');
-            ingredient[index] = cleanedString;
+            ingredient[index] = hypToSpace(section);
           };
         });
       });
     };
     return newArray;
-    /* ========================================================================================================== */
   };
+};
+
+export function hypToSpace(string) {
+  return string.replace(/-/g, ' ');
 };
