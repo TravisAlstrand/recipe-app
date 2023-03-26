@@ -70,7 +70,7 @@ const CreateRecipe = () => {
         if (res.errors) {
           setErrors(res.errors);
         } else {
-          navigate('/');
+          navigate('/recipes');
         };
       });
   };
@@ -152,7 +152,7 @@ const CreateRecipe = () => {
           <option>Hours</option>
         </select>
         <button type='submit'>Submit</button>
-        <Link to='/'>
+        <Link to='/recipes'>
           <button>Cancel</button>
         </Link>
       </form>

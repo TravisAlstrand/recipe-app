@@ -60,7 +60,7 @@ const RecipeDetail = () => {
         ) : (
           <h1>Loading...</h1>
         )}
-      <Link to={'/'}>
+      <Link to={'/recipes'}>
         <button type='button'>Home</button>
       </Link>
       {user !== null && user.id === recipe.userId ? (
