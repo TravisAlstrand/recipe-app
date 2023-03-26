@@ -9,26 +9,16 @@ const HomePage = () => {
   return (
     <main>
       <div className='main-cont'>
-        {
-          user ? (
-            <>
-              <span className='user-name'>Welcome {user.username}!</span>
-              <Link to='/users/signout'>
-                <button className='home-btn'>Sign Out</button>
-              </Link>
-            </>
-          ) :
-            <>
-              <Link to='/users/signin'>
-                <button className='home-btn'>Sign In</button>
-              </Link>
-              <Link to='/users/signup'>
-                <button className='home-btn'>Sign Up</button>
-              </Link>
-            </>
-        }
+        <h1 className='welcome-h1'>RECIPE APP</h1>
+        <p className='welcome-p'>A great place to save, edit and share your recipes without getting a god damn novel about what their great grandmothers were up to over a hundred years ago.</p>
+        <Link to='/users/signin'>
+          <button className='home-btn'>Sign In</button>
+        </Link>
+        <Link to='/users/signup'>
+          <button className='home-btn'>Create an Account</button>
+        </Link>
         <Link to='/recipes'>
-          <button className='home-btn'>Browse All Recipes</button>
+          <button className='home-btn'>Browse Recipes</button>
         </Link>
       </div>
     </main>
