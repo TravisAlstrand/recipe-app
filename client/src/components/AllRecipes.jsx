@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import { getAllRecipes } from "../utilities/ApiCalls";
 
+import Header from './Header';
+
 const AllRecipes = () => {
 
   const [recipes, setRecipes] = useState([]);
@@ -16,6 +18,7 @@ const AllRecipes = () => {
 
   return (
     <>
+      <Header />
       <h1>All Recipes</h1>
       {recipes?.map((recipe) => {
         return (

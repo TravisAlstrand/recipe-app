@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 import { createRecipe } from '../utilities/ApiCalls';
 import { cleanFormData, cleanIngredients } from '../utilities/DataClean';
+import Header from './Header';
 import IngredientDiv from './IngredientDiv';
 
 const CreateRecipe = () => {
@@ -77,6 +78,7 @@ const CreateRecipe = () => {
 
   return (
     <>
+      <Header />
       <h1>Create Recipe</h1>
       {errors.length > 0 ? (
         <div>

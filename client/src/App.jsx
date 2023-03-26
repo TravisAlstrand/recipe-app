@@ -5,7 +5,6 @@ import './App.css'
 
 // COMPONENTS
 import HomePage from './components/HomePage';
-import Header from './components/Header';
 import AllRecipes from './components/AllRecipes';
 import CreateRecipe from './components/CreateRecipe';
 import RecipeDetail from './components/RecipeDetail';
@@ -23,7 +22,6 @@ function App() {
 
   return (
     <>
-      <Header />
       <Routes>
         <Route exact path='/' element={
           user ? (
