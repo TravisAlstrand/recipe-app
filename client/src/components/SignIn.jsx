@@ -29,31 +29,39 @@ const SignIn = () => {
   };
 
   return (
-    <>
-      <h1>Sign In</h1>
+    <main className='main-cont'>
+      <h1>SIGN IN</h1>
       {error.length ? (
-        <div>
-          <h3>Validation Error</h3>
-          <p>{error}</p>
+        <div className='validation-div'>
+          <h3 className='validation-h3'>Validation Error</h3>
+          <p className='validation-err'>{error}</p>
         </div>
       ) : (
         <></>
       )}
       <form onSubmit={handleSubmit}>
-        <label htmlFor='username'>Username</label>
-        <input id='username' name='username' type='text' ref={usernameInput} />
-        <label htmlFor='password'>Password</label>
-        <input id='password' name='password' type='password' ref={passwordInput} />
-        <button type='submit'>Sign In</button>
-        <Link to='/'>
-          <button>Cancel</button>
-        </Link>
+        <div className='input-div'>
+          <label htmlFor='username'>Username</label>
+          <input id='username' name='username' type='text' ref={usernameInput} required />
+        </div>
+        <div className='input-div'>
+          <label htmlFor='password'>Password</label>
+          <input id='password' name='password' type='password' ref={passwordInput} required />
+        </div>
+        <div className='signin-btn-div'>
+          <button type='submit' className='submit-btn btn'>Sign In</button>
+          <Link to='/'>
+            <button className='cancel-btn btn'>Cancel</button>
+          </Link>
+        </div>
       </form>
-      <p>Don't have an account yet?</p>
-      <Link to='/users/signup'>
-        <button>Sign Up</button>
-      </Link>
-    </>
+      <div className='change-div'>
+        <p>Don't have an account yet?</p>
+        <Link to='/users/signup'>
+          <button className='change-btn btn'>Sign Up</button>
+        </Link>
+      </div>
+    </main>
   );
 };
 

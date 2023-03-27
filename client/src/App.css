@@ -13,6 +13,7 @@
   --clr-grn3: #3a5a40;
   --clr-grn4: #344e41;
   --clr-pink: rgba(214, 180, 180, 30%);
+  --clr-err: rgb(146, 29, 29);
   --clr-shadow: rgba(0, 0, 0, 30%);
   --trans: .4s ease;
 }
@@ -20,36 +21,42 @@
 /* === BASE STYLES === */
 
 body {
+  display: flex;
+  justify-content: center;
   padding-inline: 1.5rem;
   background-color: var(--clr-light);
 }
 
-/* === WELCOME PAGE === */
+#root {
+  width: 100%;
+}
+
+h1 {
+  font-size: 2.8rem;
+}
+
+h1,
+h3 {
+  text-transform: uppercase;
+  text-shadow: 0px 4px 4px var(--clr-shadow);
+  color: var(--clr-grn3);
+}
+
+h3 {
+  font-size: 1.5rem;
+}
 
 .main-cont {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 60%;
-}
-
-.welcome-h1 {
-  text-align: center;
-  font-size: 45px;
-  text-shadow: 0px 4px 4px var(--clr-shadow);
-  color: var(--clr-grn3);
-}
-
-.welcome-p {
-  margin-top: 3rem;
+  min-width: 193px;
+  margin-top: 15vh;
   text-align: center;
   color: var(--clr-grn4);
 }
 
-.home-btn {
-  width: 256px;
-  height: 66px;
-  margin-top: 3rem;
+.btn {
   border-radius: 35px;
   border: none;
   background-color: var(--clr-grn1);
@@ -59,9 +66,100 @@ body {
   transition: background-color var(--trans), color var(--trans), box-shadow var(--trans);
 }
 
-.home-btn:hover {
+.btn:hover {
   cursor: pointer;
   box-shadow: 2px 4px 4px 0 var(--clr-shadow);
   background-color: var(--clr-grn2);
   color: var(--clr-light);
+}
+
+.cancel-btn {
+  border: 2px solid var(--clr-grn4);
+  background-color: var(--clr-light);
+}
+
+form {
+  width: 100%;
+  margin-top: 3rem;
+}
+
+input {
+  margin-top: .5rem;
+  padding-inline: .5rem;
+  height: 2.5rem;
+  border-radius: 5px;
+  border: none;
+}
+
+label {
+  text-align: left;
+  font-size: 1.25rem;
+}
+
+.validation-div {
+  margin-top: 2rem;
+}
+
+.validation-h3 {
+  color: var(--clr-err);
+}
+
+.validation-err {
+  color: var(--clr-err);
+  margin-top: .5rem;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+/* === WELCOME PAGE === */
+
+.welcome-p,
+.home-btn {
+  margin-top: 3rem;
+}
+
+.main-cont.welcome {
+  max-width: 272px;
+}
+
+.home-btn {
+  width: 256px;
+  height: 66px;
+}
+
+/* === SIGN IN === */
+
+.input-div {
+  display: flex;
+  flex-direction: column;
+}
+
+label:last-of-type {
+  margin-top: 2rem;
+}
+
+.signin-btn-div {
+  width: 100%;
+  margin-top: 3rem;
+}
+
+.submit-btn,
+.cancel-btn {
+  width: 48%;
+  height: 2.5rem;
+}
+
+.submit-btn {
+  margin-right: .5rem;
+}
+
+.change-div {
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.change-btn {
+  width: 50%;
+  height: 2.5rem;
+  margin-top: 1rem;
 }
