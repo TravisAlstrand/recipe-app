@@ -33,14 +33,14 @@ const SignUp = () => {
   };
 
   return (
-    <>
-      <h1>Sign Up</h1>
+    <main className='main-cont'>
+      <h1>Create an Account</h1>
       {errors.length > 0 ? (
-        <div>
-          <h3>Validation Errors</h3>
+        <div className='validation-div'>
+          <h3 className='validation-h3'>Validation Errors</h3>
           <ul>
             {errors.map((error, index) => {
-              return (<li key={index}>{error}</li>)
+              return (<li key={index} className='validation-err'>{error}</li>)
             })}
           </ul>
         </div>
@@ -48,20 +48,28 @@ const SignUp = () => {
         <></>
       )}
       <form onSubmit={handleSubmit}>
-        <label htmlFor='username'>Username</label>
-        <input id='username' name='username' type='text' ref={usernameInput} />
-        <label htmlFor='password'>Password</label>
-        <input id='password' name='password' type='password' ref={passwordInput} />
-        <button type='submit'>Sign Up</button>
-        <Link to='/'>
-          <button>Cancel</button>
-        </Link>
+        <div className='input-div'>
+          <label htmlFor='username'>Username</label>
+          <input id='username' name='username' type='text' ref={usernameInput} required />
+        </div>
+        <div className='input-div'>
+          <label htmlFor='password'>Password</label>
+          <input id='password' name='password' type='password' ref={passwordInput} required />
+        </div>
+        <div className='signin-btn-div'>
+          <button type='submit' className='submit-btn btn'>Sign Up</button>
+          <Link to='/'>
+            <button className='cancel-btn btn'>Cancel</button>
+          </Link>
+        </div>
       </form>
-      <p>Already have an account?</p>
-      <Link to='/users/signin'>
-        <button>Sign In</button>
-      </Link>
-    </>
+      <div className='change-div'>
+        <p>Already have an account?</p>
+        <Link to='/users/signin'>
+          <button className='change-btn btn'>Sign In</button>
+        </Link>
+      </div>
+    </main>
   );
 };
 
