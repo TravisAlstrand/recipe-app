@@ -21,14 +21,25 @@
 /* === BASE STYLES === */
 
 body {
-  display: flex;
-  justify-content: center;
   padding-inline: 1.5rem;
   background-color: var(--clr-light);
 }
 
 #root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
+}
+
+main {
+  width: 100%;
+  max-width: 272px
+}
+
+header {
+  width: 100%;
+  max-width: 272px
 }
 
 h1 {
@@ -46,11 +57,23 @@ h3 {
   font-size: 1.5rem;
 }
 
+a {
+  text-decoration: none;
+}
+
+a:link,
+a:visited {
+  color: var(--clr-grn4)
+}
+
+ul {
+  list-style: none;
+}
+
 .main-cont {
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 272px;
   margin-top: 15vh;
   text-align: center;
   color: var(--clr-grn4);
@@ -112,6 +135,43 @@ label {
   list-style: none;
 }
 
+/* === HEADER === */
+
+.welcome-line-hdr,
+.user-name {
+  font-weight: 700;
+}
+
+header {
+  padding-block: 1rem;
+}
+
+nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.nav-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90px;
+  height: 1.5rem;
+}
+
+.nav-btn:last-of-type {
+  margin-left: 1rem;
+}
+
+.welcome-line-hdr {
+  color: var(--clr-grn4);
+}
+
+.user-name {
+  color: var(--clr-grn2);
+}
+
 /* === WELCOME PAGE === */
 
 .welcome-p,
@@ -124,7 +184,7 @@ label {
   height: 66px;
 }
 
-/* === SIGN IN === */
+/* === SIGN IN / SIGN UP === */
 
 .input-div {
   display: flex;
@@ -159,4 +219,22 @@ label:last-of-type {
   width: 50%;
   height: 2.5rem;
   margin-top: 1rem;
+}
+
+/* === BROWSE PAGE === */
+
+.recipe-li {
+  margin-top: 1.5rem;
+}
+
+.recipe-li a {
+  font-weight: 700;
+  font-size: 1.25rem;
+  text-decoration: underline;
+  color: var(--clr-grn4);
+  transition: color var(--trans);
+}
+
+.recipe-li a:hover {
+  color: var(--clr-grn2);
 }

@@ -12,13 +12,13 @@ const Header = () => {
         {
           user ? (
             <>
-              <span className='user-name'>Welcome {user.username}!</span>
-              <NavLink className='nav-btn' to='/users/signout'>Sign Out</NavLink>
+              <span className='welcome-line-hdr'>Welcome <span className='user-name'>{user.username}</span>!</span>
+              <NavLink className='nav-btn btn' to='/users/signout'>Sign Out</NavLink>
             </>
           ) :
             <>
-              <NavLink className='nav-btn' to='/users/signin'>Sign In</NavLink>
-              <NavLink className='nav-btn' to='/users/signup'>Sign Up</NavLink>
+              <NavLink className='nav-btn btn' to='/users/signin'>Sign In</NavLink>
+              <NavLink className='nav-btn btn' to='/users/signup'>Sign Up</NavLink>
             </>
         }
       </nav>
