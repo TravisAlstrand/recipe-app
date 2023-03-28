@@ -34,7 +34,8 @@ body {
 
 main {
   width: 100%;
-  max-width: 272px
+  max-width: 272px;
+  margin-bottom: 2rem;
 }
 
 header {
@@ -79,6 +80,10 @@ ul {
   color: var(--clr-grn4);
 }
 
+.main-cont.higher {
+  margin-top: 8vh;
+}
+
 .btn {
   padding: .5rem;
   border-radius: 35px;
@@ -115,7 +120,22 @@ input {
   border: none;
 }
 
+input[type='radio'] {
+  cursor: pointer;
+  margin: 0 2rem 0 .5rem;
+}
+
+select {
+  cursor: pointer;
+  height: 2.5rem;
+  margin-top: .5rem;
+  padding-inline: .5rem;
+  border: none;
+  border-radius: 5px;
+}
+
 label {
+  cursor: pointer;
   text-align: left;
   font-size: 1.25rem;
 }
@@ -246,10 +266,6 @@ label:last-of-type {
   margin-top: 1rem;
 }
 
-.main-cont.details {
-  margin-top: 8vh;
-}
-
 .details-cont {
   width: 100%;
   text-align: left;
@@ -296,4 +312,101 @@ label:last-of-type {
 
 .accordion.active .accordion-body {
   display: block;
+}
+
+/* === CREATE / EDIT PAGE === */
+
+.main-cont.highest {
+  margin-top: 3vh;
+}
+
+.create-edit-form label,
+.create-edit-form p {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-top: 0;
+}
+
+.create-edit-form input[type='text'],
+.create-edit-form select {
+  width: 100%;
+}
+
+.label-input-div,
+.label-radio-div,
+.all-ingredients-cont,
+.all-directions-cont {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--clr-grn1);
+}
+
+.label-input-div.no-bottom-border {
+  padding-bottom: 0;
+  border: none;
+}
+
+.create-edit-form {
+  margin-top: 2rem;
+  text-align: left;
+}
+
+.label-input-div {
+  display: flex;
+  flex-direction: column;
+}
+
+span.validation-err {
+  text-decoration: none;
+}
+
+.label-input-div button {
+  margin-block: .5rem;
+}
+
+.label-radio-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-select-div {
+  display: flex;
+  align-items: center;
+  margin-top: .5rem;
+}
+
+.input-select-div input {
+  margin: 0 .5rem 0 0;
+}
+
+.input-select-div select {
+  margin: 0;
+}
+
+.ing-dir-cont {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px dotted var(--clr-grn1);
+}
+
+.ing-dir-cont:last-of-type {
+  padding-bottom: 0;
+  border: none;
+}
+
+.ing-dir-cont .input-select-div {
+  margin-bottom: .5rem;
+}
+
+.cancel-btn.remove {
+  width: inherit;
+  margin-top: 1rem;
+  color: var(--clr-err);
+}
+
+.cancel-btn.remove:hover {
+  background-color: var(--clr-pink);
 }

@@ -36,7 +36,6 @@ const CreateRecipe = () => {
         values[index][2] = e.target.value;
       };
       setIngredients(values);
-      console.log(ingredients)
     } else if (string === 'direction') {
       values = [...directions];
       values[index] = e.target.value;
@@ -76,87 +75,107 @@ const CreateRecipe = () => {
   };
 
   return (
-    <>
+    <main className='main-cont highest'>
       <h1>Create Recipe</h1>
       {errors.length > 0 ? (
-        <div>
-          <h3>Validation Errors</h3>
+        <div className='validation-div'>
+          <h3 className='validation-h3'>Validation Errors</h3>
           <ul>
             {errors.map((error, index) => {
-              return (<li key={index}>{error}</li>)
+              return (<li key={index} className='validation-err'>{error}</li>)
             })}
           </ul>
         </div>
       ) : (
         <></>
       )}
-      <form onSubmit={handleSubmit}>
-        <label htmlFor='name'>Recipe Name (Required)</label>
-        <input type='text' name='name' id='name' />
-        <label htmlFor='type'>Type</label>
-        <select name='type' id='type'>
-          <option hidden>Select a Type</option>
-          <option>Mexican</option>
-          <option>Asian</option>
-          <option>Italian</option>
-          <option>Indian</option>
-          <option>American</option>
-          <option>Breakfast</option>
-          <option>Other</option>
-        </select>
-        <label htmlFor='difficulty'>Difficulty</label>
-        <select name='difficulty' id='difficulty'>
-          <option hidden>Select a Difficulty</option>
-          <option>Easy</option>
-          <option>Medium</option>
-          <option>Hard</option>
-        </select>
+      <form className='create-edit-form' onSubmit={handleSubmit}>
+        <div className='label-input-div'>
+          <label htmlFor='name'>Recipe Name <span className='validation-err'>(Required)</span></label>
+          <input type='text' name='name' id='name' placeholder='ex. Bestest Recipe Evers' />
+        </div>
+        <div className='label-input-div'>
+          <label htmlFor='type'>Type</label>
+          <select name='type' id='type'>
+            <option hidden>Select a Type</option>
+            <option>Mexican</option>
+            <option>Asian</option>
+            <option>Italian</option>
+            <option>Indian</option>
+            <option>American</option>
+            <option>Breakfast</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div className='label-input-div'>
+          <label htmlFor='difficulty'>Difficulty</label>
+          <select name='difficulty' id='difficulty'>
+            <option hidden>Select a Difficulty</option>
+            <option>Easy</option>
+            <option>Medium</option>
+            <option>Hard</option>
+          </select>
+        </div>
         <p>Slow Cooker?</p>
-        <label htmlFor='yesSlow'>Yes</label>
-        <input type='radio' name='slowCooker' id='yesSlow' />
-        <label htmlFor='noSlow'>No</label>
-        <input type='radio' name='slowCooker' id='noSlow' />
-        <div className='all-ingredients-container' id='allIngredientsContainer'>
-          <p>Ingredients</p>
-          <button className='add-ingredient-btn' type='button' onClick={() => handleAdd('ingredient')}>+</button>
+        <div className='label-radio-div'>
+          <label htmlFor='yesSlow'>Yes</label>
+          <input type='radio' name='slowCooker' id='yesSlow' />
+          <label htmlFor='noSlow'>No</label>
+          <input type='radio' name='slowCooker' id='noSlow' />
+        </div>
+        <div className='all-ingredients-cont' id='allIngredientsContainer'>
+          <div className='label-input-div no-bottom-border'>
+            <p>Ingredients</p>
+            <button className='btn' type='button' onClick={() => handleAdd('ingredient')}>Add Ingredient</button>
+          </div>
           {ingredients.map((data, index) => {
             return (
               <IngredientDiv key={index} index={index} data={data} handleChange={handleChange} handleDelete={handleDelete} />
             );
           })}
         </div>
-        <div className='all-directions-container'>
-          <p>Directions</p>
-          <button className='add-direction-btn' type='button' onClick={() => handleAdd('direction')}>+</button>
+        <div className='all-directions-cont'>
+          <div className='label-input-div no-bottom-border'>
+            <p>Directions</p>
+            <button className='btn' type='button' onClick={() => handleAdd('direction')}>Add Direction Step</button>
+          </div>
           {directions.map((data, index) => {
             return (
-              <div className='direction-container' key={index}>
-                <input type='text' name='direction' value={data} onChange={e => handleChange(e, index, 'direction')} />
-                <button className='remove-direction-btn' type='button' onClick={() => handleDelete(index, 'direction')}>X</button>
+              <div className='ing-dir-cont' key={index}>
+                <input type='text' name='direction' value={data} onChange={e => handleChange(e, index, 'direction')} placeholder='ex. Cook until it reaches temp' />
+                <button className='cancel-btn remove btn' type='button' onClick={() => handleDelete(index, 'direction')}>Remove Above Direction</button>
               </div>
             );
           })}
         </div>
-        <label htmlFor='prepTime'>Prep Time</label>
-        <input type='text' name='prepTime' id='prepTime'></input>
-        <select id='prepTimeUnit' name='prepTimeUnit'>
-          <option hidden>Select a Time Unit</option>
-          <option>Minutes</option>
-          <option>Hours</option>
-        </select>
-        <label htmlFor='cookTime'>Cook Time</label>
-        <input type='text' name='cookTime' id='cookTime'></input>
-        <select id='cookTimeUnit' name='cookTimeUnit'>
-          <option hidden>Select a Time Unit</option>
-          <option>Minutes</option>
-          <option>Hours</option>
-        </select>
-        <button type='submit'>Submit</button>
+        <div className='label-input-div'>
+          <label htmlFor='prepTime'>Prep Time</label>
+          <div className='input-select-div'>
+            <input type='text' name='prepTime' id='prepTime' placeholder='ex. 1.5' />
+            <select id='prepTimeUnit' name='prepTimeUnit'>
+              <option hidden>Select a Time Unit</option>
+              <option>Minutes</option>
+              <option>Hours</option>
+            </select>
+          </div>
+        </div>
+        <div className='label-input-div'>
+          <label htmlFor='cookTime'>Cook Time</label>
+          <div className='input-select-div'>
+            <input type='text' name='cookTime' id='cookTime' placeholder='ex. 1.5' />
+            <select id='cookTimeUnit' name='cookTimeUnit'>
+              <option hidden>Select a Time Unit</option>
+              <option>Minutes</option>
+              <option>Hours</option>
+            </select>
+          </div>
+        </div>
+        <button type='submit' className='submit-btn btn'>Submit</button>
         <Link to='/recipes'>
-          <button>Cancel</button>
+          <button className='cancel-btn btn'>Cancel</button>
         </Link>
       </form>
-    </>
+    </main>
   );
 };
 

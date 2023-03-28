@@ -50,7 +50,7 @@ const RecipeDetail = () => {
 
   return (
     <>
-      <main className='main-cont details'>
+      <main className='main-cont higher'>
         {
           recipe ? (
             <>
