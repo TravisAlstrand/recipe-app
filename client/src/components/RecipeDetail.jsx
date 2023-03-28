@@ -4,7 +4,6 @@ import ReactMarkdown from 'react-markdown';
 import { getSingleRecipe } from '../utilities/ApiCalls';
 import { hypToSpace } from '../utilities/DataClean';
 import { UserContext } from '../context/UserContext';
-import Header from './Header';
 
 const RecipeDetail = () => {
 
@@ -51,7 +50,6 @@ const RecipeDetail = () => {
 
   return (
     <>
-      <Header />
       <main className='main-cont details'>
         {
           recipe ? (

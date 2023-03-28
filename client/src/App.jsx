@@ -1,9 +1,10 @@
 import { useContext } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { UserContext } from './context/UserContext';
 import './App.css';
 
 // COMPONENTS
+import Header from './components/Header';
 import HomePage from './components/HomePage';
 import AllRecipes from './components/AllRecipes';
 import CreateRecipe from './components/CreateRecipe';
@@ -19,9 +20,17 @@ import Forbidden from './components/Forbidden';
 function App() {
 
   const { user } = useContext(UserContext);
+  let location = useLocation();
 
   return (
     <>
+      {location.pathname !== '/welcome' &&
+        location.pathname !== '/users/signin' &&
+        location.pathname !== '/users/signup' ? (
+        <Header />
+      ) : (
+        <></>
+      )}
       <Routes>
         <Route exact path='/' element={
           user ? (

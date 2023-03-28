@@ -3,7 +3,6 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { UserContext } from '../context/UserContext';
 import { getSingleRecipe, updateRecipe } from "../utilities/ApiCalls";
 import { cleanFormData, splitString, cleanIngredients } from "../utilities/DataClean";
-import Header from "./Header";
 import IngredientDiv from "./IngredientDiv";
 
 const EditRecipe = () => {
@@ -116,7 +115,6 @@ const EditRecipe = () => {
 
   return (
     <>
-      <Header />
       <h1>Edit Recipe</h1>
 
       {errors.length > 0 ? (

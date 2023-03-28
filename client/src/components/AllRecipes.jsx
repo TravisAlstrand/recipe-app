@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import { getAllRecipes } from "../utilities/ApiCalls";
 
-import Header from './Header';
-
 const AllRecipes = () => {
 
   const [recipes, setRecipes] = useState([]);
@@ -18,7 +16,6 @@ const AllRecipes = () => {
 
   return (
     <>
-      <Header />
       <main className='main-cont'>
         <h1>Browse Recipes</h1>
         <ul className='recipes-cont'>
