@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { UserContext } from './context/UserContext';
-import './App.css'
+import './App.css';
 
 // COMPONENTS
 import HomePage from './components/HomePage';

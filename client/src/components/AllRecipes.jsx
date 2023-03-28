@@ -24,8 +24,8 @@ const AllRecipes = () => {
         <ul className='recipes-cont'>
           {recipes?.map((recipe) => {
             return (
-              <li className='recipe-li'>
-                <Link key={recipe.id} to={`/recipes/${recipe.id}`}>
+              <li className='recipe-li' key={recipe.id}>
+                <Link to={`/recipes/${recipe.id}`}>
                   {recipe.recipeName}
                 </Link>
               </li>

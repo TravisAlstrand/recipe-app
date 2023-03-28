@@ -80,6 +80,7 @@ ul {
 }
 
 .btn {
+  padding: .5rem;
   border-radius: 35px;
   border: none;
   background-color: var(--clr-grn1);
@@ -156,8 +157,7 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 90px;
-  height: 1.5rem;
+  padding-block: .05rem;
 }
 
 .nav-btn:last-of-type {
@@ -237,4 +237,63 @@ label:last-of-type {
 
 .recipe-li a:hover {
   color: var(--clr-grn2);
+}
+
+/* === DETAIL PAGE === */
+
+.details-cont p,
+.detail-btn-div .btn {
+  margin-top: 1rem;
+}
+
+.main-cont.details {
+  margin-top: 8vh;
+}
+
+.details-cont {
+  width: 100%;
+  text-align: left;
+}
+
+.mrkdn-ing-list li {
+  list-style: disc;
+}
+
+.mrkdn-dir-list li {
+  list-style: decimal;
+}
+
+.detail-name {
+  font-weight: 700;
+}
+
+.detail-btn-div {
+  display: flex;
+  flex-direction: column;
+}
+
+.accordion-header {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: .5rem;
+}
+
+.acc-header {
+  margin-right: 2rem;
+}
+
+.accordion-btn {
+  padding-block: 0;
+}
+
+.accordion-body {
+  display: none;
+  padding: .5rem .5rem .5rem 1.75rem;
+  border-radius: 10px;
+  color: var(--clr-light);
+  background-color: var(--clr-grn3);
+}
+
+.accordion.active .accordion-body {
+  display: block;
 }
