@@ -20,11 +20,6 @@
 
 /* === BASE STYLES === */
 
-body,
-.cancel-btn {
-  background-color: var(--clr-light);
-}
-
 #root,
 .main-cont {
   display: flex;
@@ -174,6 +169,11 @@ label {
 
 .validation-err {
   text-decoration: underline;
+}
+
+body,
+.cancel-btn {
+  background-color: var(--clr-light);
 }
 
 /* === HEADER === */
@@ -437,4 +437,19 @@ label:last-of-type,
 
 .cancel-btn.remove:hover {
   background-color: var(--clr-pink);
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 20px;
+  }
+
+  main,
+  header {
+    max-width: 700px;
+  }
+
+  .details-cont {
+    width: 50%;
+  }
 }
