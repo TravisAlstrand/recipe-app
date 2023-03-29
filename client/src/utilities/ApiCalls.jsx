@@ -4,7 +4,7 @@ const api = (
   body = null,
   credentials = null
 ) => {
-  const url = "http://localhost:5000/" + path;
+  const url = "https://recipe-app-production-7b68.up.railway.app/" + path;
 
   const options = {
     method,

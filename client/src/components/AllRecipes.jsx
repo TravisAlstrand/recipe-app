@@ -19,7 +19,7 @@ const AllRecipes = () => {
       <main className='main-cont'>
         <h1>Browse Recipes</h1>
         <ul className='recipes-cont'>
-          {recipes?.map((recipe) => {
+          {recipes.length && recipes?.map((recipe) => {
             return (
               <li className='recipe-li' key={recipe.id}>
                 <Link to={`/recipes/${recipe.id}`}>
