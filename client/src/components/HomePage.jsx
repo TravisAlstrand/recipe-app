@@ -9,7 +9,7 @@ const HomePage = () => {
   return (
     <main className='main-cont welcome'>
       <h1>RECIPE APP</h1>
-      <p className='welcome-p'>A great place to save, edit and share your recipes without getting a god damn novel about what their great grandmothers were up to over a hundred years ago.</p>
+      <p className='welcome-p'>A great place to save, edit and share your recipes without getting a damn novel about what their great grandmothers were up to over a hundred years ago.</p>
       <Link to='/users/signin'>
         <button className='home-btn btn'>Sign In</button>
       </Link>
