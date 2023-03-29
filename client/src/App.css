@@ -20,38 +20,100 @@
 
 /* === BASE STYLES === */
 
-body {
-  padding-inline: 1.5rem;
+body,
+.cancel-btn {
   background-color: var(--clr-light);
 }
 
-#root {
+#root,
+.main-cont {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+#root,
+main,
+header,
+form {
   width: 100%;
 }
 
-main {
-  width: 100%;
-  max-width: 272px;
-  margin-bottom: 2rem;
-}
-
+main,
 header {
-  width: 100%;
-  max-width: 272px
+  max-width: 272px;
 }
 
-h1 {
-  font-size: 2.8rem;
+h1,
+h3,
+.btn {
+  text-transform: uppercase;
 }
 
 h1,
 h3 {
-  text-transform: uppercase;
   text-shadow: 0px 4px 4px var(--clr-shadow);
   color: var(--clr-grn3);
+}
+
+a:link,
+a:visited,
+.main-cont,
+.btn {
+  color: var(--clr-grn4);
+}
+
+select,
+input,
+.btn {
+  border: none;
+}
+
+.btn,
+.validation-err {
+  font-weight: 700;
+}
+
+.btn:hover,
+input[type='radio'],
+select,
+label {
+  cursor: pointer;
+}
+
+input,
+select,
+.validation-err {
+  margin-top: .5rem;
+}
+
+input,
+select {
+  height: 2.5rem;
+  padding-inline: .5rem;
+  border-radius: 5px;
+}
+
+.validation-h3,
+.validation-err {
+  color: var(--clr-err);
+}
+
+ul,
+.validation-err {
+  list-style: none;
+}
+
+body {
+  padding-inline: 1.5rem;
+}
+
+main {
+  margin-bottom: 2rem;
+}
+
+h1 {
+  font-size: 2.8rem;
 }
 
 h3 {
@@ -62,41 +124,27 @@ a {
   text-decoration: none;
 }
 
-a:link,
-a:visited {
-  color: var(--clr-grn4)
-}
-
-ul {
-  list-style: none;
-}
-
 .main-cont {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   margin-top: 15vh;
   text-align: center;
-  color: var(--clr-grn4);
 }
 
 .main-cont.higher {
   margin-top: 8vh;
 }
 
+.main-cont.highest {
+  margin-top: 3vh;
+}
+
 .btn {
   padding: .5rem;
   border-radius: 35px;
-  border: none;
   background-color: var(--clr-grn1);
-  font-weight: 700;
-  text-transform: uppercase;
-  color: var(--clr-grn4);
   transition: background-color var(--trans), color var(--trans), box-shadow var(--trans);
 }
 
 .btn:hover {
-  cursor: pointer;
   box-shadow: 2px 4px 4px 0 var(--clr-shadow);
   background-color: var(--clr-grn2);
   color: var(--clr-light);
@@ -104,38 +152,17 @@ ul {
 
 .cancel-btn {
   border: 2px solid var(--clr-grn4);
-  background-color: var(--clr-light);
 }
 
 form {
-  width: 100%;
   margin-top: 3rem;
 }
 
-input {
-  margin-top: .5rem;
-  padding-inline: .5rem;
-  height: 2.5rem;
-  border-radius: 5px;
-  border: none;
-}
-
 input[type='radio'] {
-  cursor: pointer;
   margin: 0 2rem 0 .5rem;
 }
 
-select {
-  cursor: pointer;
-  height: 2.5rem;
-  margin-top: .5rem;
-  padding-inline: .5rem;
-  border: none;
-  border-radius: 5px;
-}
-
 label {
-  cursor: pointer;
   text-align: left;
   font-size: 1.25rem;
 }
@@ -144,16 +171,8 @@ label {
   margin-top: 2rem;
 }
 
-.validation-h3 {
-  color: var(--clr-err);
-}
-
 .validation-err {
-  color: var(--clr-err);
-  margin-top: .5rem;
-  font-weight: 700;
   text-decoration: underline;
-  list-style: none;
 }
 
 /* === HEADER === */
@@ -315,10 +334,6 @@ label:last-of-type {
 }
 
 /* === CREATE / EDIT PAGE === */
-
-.main-cont.highest {
-  margin-top: 3vh;
-}
 
 .create-edit-form label,
 .create-edit-form p {
