@@ -439,6 +439,10 @@ label:last-of-type,
   background-color: var(--clr-pink);
 }
 
+.add-div .btn {
+  width: 100%;
+}
+
 /* === CONFIRM DELETE / FORBIDDEN / NOTFOUND === */
 
 .info-p {

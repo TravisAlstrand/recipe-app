@@ -126,18 +126,19 @@ const CreateRecipe = () => {
         <div className='all-ingredients-cont' id='allIngredientsContainer'>
           <div className='label-input-div no-bottom-border'>
             <p>Ingredients</p>
-            <button className='btn' type='button' onClick={() => handleAdd('ingredient')}>Add Ingredient</button>
           </div>
           {ingredients.map((data, index) => {
             return (
               <IngredientDiv key={index} index={index} data={data} handleChange={handleChange} handleDelete={handleDelete} />
             );
           })}
+          <div className='add-div'>
+            <button className='btn' type='button' onClick={() => handleAdd('ingredient')}>Add Ingredient</button>
+          </div>
         </div>
         <div className='all-directions-cont'>
           <div className='label-input-div no-bottom-border'>
             <p>Directions</p>
-            <button className='btn' type='button' onClick={() => handleAdd('direction')}>Add Direction Step</button>
           </div>
           {directions.map((data, index) => {
             return (
@@ -147,6 +148,9 @@ const CreateRecipe = () => {
               </div>
             );
           })}
+          <div className='add-div'>
+            <button className='btn' type='button' onClick={() => handleAdd('direction')}>Add Direction Step</button>
+          </div>
         </div>
         <div className='label-input-div'>
           <label htmlFor='prepTime'>Prep Time</label>
