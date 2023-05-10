@@ -10,6 +10,7 @@ import AllRecipes from './components/AllRecipes';
 import CreateRecipe from './components/CreateRecipe';
 import RecipeDetail from './components/RecipeDetail';
 import EditRecipe from './components/EditRecipe';
+import ConfirmDelete from './components/ConfirmDelete';
 import PrivateRoute from './components/PrivateRoute';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
@@ -50,6 +51,7 @@ function App() {
         <Route element={<PrivateRoute />}>
           <Route exact path='/recipes/create' element={<CreateRecipe />} />
           <Route path='/recipes/:id/edit' element={<EditRecipe />} />
+          <Route path='/recipes/:id/confirm-delete' element={<ConfirmDelete />} />
         </Route>
         <Route path='*' element={<PageNotFound />} />
       </Routes>

@@ -4,7 +4,7 @@ const api = (
   body = null,
   credentials = null
 ) => {
-  const url = "https://recipe-app-production-7b68.up.railway.app/" + path;
+  const url = "http://localhost:5000/" + path;
 
   const options = {
     method,
@@ -92,5 +92,15 @@ export const updateRecipe = async (body, username, password) => {
     return response;
   } else {
     return "Is Schwarzenegger hard to spell?"
+  };
+};
+
+export const deleteRecipe = async (id, username, password) => {
+  const response = await api(`recipes/${id}`, 'DELETE', null, { username, password });
+
+  if (response.status === 403 || response.status === 404) {
+    return response.status;
+  } else {
+    return "You dirty rat! You killed my brudda! You dirty rat!"
   };
 };

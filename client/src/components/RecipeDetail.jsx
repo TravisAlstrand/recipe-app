@@ -95,13 +95,15 @@ const RecipeDetail = () => {
             <button type='button' className='btn'>Back to Recipes</button>
           </Link>
           {user !== null && user.id === recipe.userId ? (
-            <Link to={`/recipes/${recipe.id}/edit`}>
-              <button type='button' className='btn'>Edit Recipe</button>
-            </Link>) : <></>
+            <>
+              <Link to={`/recipes/${recipe.id}/edit`}>
+                <button type='button' className='btn'>Edit Recipe</button>
+              </Link>
+              <Link to={`/recipes/${recipe.id}/confirm-delete`}>
+                <button type='button' className='cancel-btn remove btn'>Delete Recipe</button>
+              </Link>
+            </>) : <></>
           }
-          {/* <Link to={`/recipes/${recipe.id}/edit`}>
-            <button type='button' className='btn'>Delete Recipe</button>
-          </Link> */}
         </div>
       </main>
     </>
