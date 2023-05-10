@@ -18,7 +18,7 @@ const ConfirmDelete = () => {
         } else if (res === 403) {
           navigate('/forbidden')
         } else {
-          navigate('/recipes')
+          navigate('/')
         };
       });
   };
@@ -41,16 +41,16 @@ const ConfirmDelete = () => {
   }, []);
 
   return (
-    <>
+    <main className="main-cont">
       <h1>Confirm Delete</h1>
-      <p>Are you certain you want to delete the recipe "{recipe.recipeName}"?!</p>
+      <p className='info-p'>Are you certain you want to delete the recipe "{recipe.recipeName}"?!</p>
       <Link to={`/recipes/${recipe.id}`}>
         <button type='button' className="btn">Cancel</button>
       </Link>
       <Link to={'/recipes'}>
         <button type='button' onClick={attemptDelete} className='btn cancel-btn remove'>Delete Forever</button>
       </Link>
-    </>
+    </main>
   );
 };
 

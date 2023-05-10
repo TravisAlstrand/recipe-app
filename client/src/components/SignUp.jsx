@@ -26,7 +26,7 @@ const SignUp = () => {
         if (res.errors) {
           setErrors(res.errors);
         } else {
-          actions.signIn(username, password);
+          actions.signIn(body.username, body.password);
           navigate('/');
         };
       });
