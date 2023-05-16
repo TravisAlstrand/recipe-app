@@ -136,9 +136,9 @@ const EditRecipe = () => {
             <input type='text' name='name' id='name' defaultValue={recipe.recipeName} />
           </div>
           <div className='label-input-div'>
-            <label htmlFor='type'>Type</label>
-            <select name='type' id='type' defaultValue={recipe.type}>
-              <option hidden>Select a Type</option>
+            <label htmlFor='type'>Cuisine</label>
+            <select name='type' id='type' defaultValue={recipe.cuisine}>
+              <option hidden>Select a Cuisine</option>
               <option>Mexican</option>
               <option>Asian</option>
               <option>Italian</option>

@@ -58,7 +58,7 @@ const RecipeDetail = () => {
               <div className='details-cont'>
                 <p><span className='detail-name'>Created By: </span><span className='user-name'>{recipe.recipeCreator?.username}</span></p>
                 <p><span className='detail-name'>Difficulty: </span>{recipe.difficulty}</p>
-                <p><span className='detail-name'>Type: </span>{recipe.type}</p>
+                <p><span className='detail-name'>Cuisine: </span>{recipe.cuisine}</p>
                 <p><span className='detail-name'>Slow Cooker: </span>{recipe.isSlowCooker === 'TRUE' ? 'Yes' : (
                   recipe.isSlowCooker === 'FALSE' ? 'No' : ''
                 )}

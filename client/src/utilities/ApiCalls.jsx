@@ -63,6 +63,10 @@ export const getAllRecipes = async () => {
   return response;
 };
 
+export const getSortedRecipes = async (key, value) => {
+
+}
+
 export const getSingleRecipe = async (id) => {
   const response = await api(`recipes/${id}`);
 

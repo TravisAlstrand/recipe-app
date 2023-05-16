@@ -95,7 +95,7 @@ const CreateRecipe = () => {
           <input type='text' name='name' id='name' placeholder='ex. Bestest Recipe Evers' />
         </div>
         <div className='label-input-div'>
-          <label htmlFor='type'>Type</label>
+          <label htmlFor='type'>Cuisine</label>
           <select name='type' id='type'>
             <option hidden>Select a Type</option>
             <option>Mexican</option>

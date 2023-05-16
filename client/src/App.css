@@ -269,6 +269,11 @@ label:last-of-type,
 
 /* === BROWSE PAGE === */
 
+select#sortBy,
+label.sort-by-label {
+  margin-top: 0;
+}
+
 .recipe-li {
   margin-top: 1.5rem;
 }
@@ -283,6 +288,23 @@ label:last-of-type,
 
 .recipe-li a:hover {
   color: var(--clr-grn2);
+}
+
+.sort-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+label.sort-by-label {
+  margin-right: 1rem;
+}
+
+select#sortBy {
+  width: 10rem;
+  text-align: center;
 }
 
 /* === DETAIL PAGE === */

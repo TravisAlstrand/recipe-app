@@ -20,7 +20,7 @@ module.exports = (sequelize) => {
         }
       }
     },
-    type: {
+    cuisine: {
       type: DataTypes.STRING
     },
     difficulty: {

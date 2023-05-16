@@ -21,9 +21,9 @@ export function cleanFormData(form, ingredients, directions) {
   // recipe type
   const type = form.type.value;
   if (type === form.type.options[0].value)
-    body.type = '';
+    body.cuisine = '';
   else {
-    body.type = type;
+    body.cuisine = type;
   };
   // recipe difficulty
   const diff = form.difficulty.value;

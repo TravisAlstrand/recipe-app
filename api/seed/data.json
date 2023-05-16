@@ -13,7 +13,22 @@
     {
       "userId": 1,
       "recipeName": "First Test Recipe",
-      "type": "Mexican",
+      "cuisine": "Mexican",
+      "difficulty": "Easy",
+      "isSlowCooker": "TRUE",
+      "ingredients": "* 3 Tablespoon Stuff\n* 85 Pound Cheese\n* 2.5 Each Da-BEEF\n* 3 Tablespoon Stuff\n* 85 Pound Cheese\n* 2.5 Each Da-BEEF",
+      "directions": "* Put the Stuff in the Stuff\n* Eat all da Cheeses\n* Squash Da BEEF!\n* Put the Stuff in the Stuff\n* Eat all da Cheeses\n* Squash Da BEEF!\n* Put the Stuff in the Stuff\n* Eat all da Cheeses\n* Squash Da BEEF!",
+      "prepTime": "20 Minutes",
+      "cookTime": "1.5 Hours"
+    },
+    {
+      "userId": 2,
+      "recipeName": "Second Test Recipe"
+    },
+    {
+      "userId": 1,
+      "recipeName": "Third Test Recipe",
+      "cuisine": "Mexican",
       "difficulty": "Easy",
       "isSlowCooker": "TRUE",
       "ingredients": "* 3 Tablespoon Stuff\n* 85 Pound Cheese\n* 2.5 Each Da-BEEF",
@@ -22,16 +37,59 @@
       "cookTime": "1.5 Hours"
     },
     {
-      "userId": 2,
-      "recipeName": "Second Test Recipe",
+      "userId": 1,
+      "recipeName": "Fourth Test Recipe",
+      "cuisine": "Mexican",
+      "difficulty": "Easy",
+      "isSlowCooker": "TRUE",
       "ingredients": "* 3 Tablespoon Stuff\n* 85 Pound Cheese\n* 2.5 Each Da-BEEF",
-      "directions": "* Put the Stuff in the Stuff\n* Eat all da Cheeses\n* Squash Da BEEF!"
+      "directions": "* Put the Stuff in the Stuff\n* Eat all da Cheeses\n* Squash Da BEEF!",
+      "prepTime": "20 Minutes",
+      "cookTime": "1.5 Hours"
+    },
+    {
+      "userId": 1,
+      "recipeName": "Fifth Test Recipe",
+      "cuisine": "Italian",
+      "difficulty": "Easy",
+      "isSlowCooker": "FALSE",
+      "ingredients": "* 3 Tablespoon Stuff\n* 85 Pound Cheese\n* 2.5 Each Da-BEEF",
+      "directions": "* Put the Stuff in the Stuff\n* Eat all da Cheeses\n* Squash Da BEEF!",
+      "prepTime": "20 Minutes",
+      "cookTime": "1.5 Hours"
+    },
+    {
+      "userId": 1,
+      "recipeName": "Sixth Test Recipe",
+      "cuisine": "Italian",
+      "difficulty": "Easy",
+      "isSlowCooker": "TRUE",
+      "ingredients": "* 3 Tablespoon Stuff\n* 85 Pound Cheese\n* 2.5 Each Da-BEEF",
+      "directions": "* Put the Stuff in the Stuff\n* Eat all da Cheeses\n* Squash Da BEEF!",
+      "prepTime": "20 Minutes",
+      "cookTime": "1.5 Hours"
+    },
+    {
+      "userId": 1,
+      "recipeName": "Seventh Test Recipe",
+      "cuisine": "Italian",
+      "difficulty": "Hard",
+      "isSlowCooker": "FALSE",
+      "ingredients": "* 3 Tablespoon Stuff\n* 85 Pound Cheese\n* 2.5 Each Da-BEEF",
+      "directions": "* Put the Stuff in the Stuff\n* Eat all da Cheeses\n* Squash Da BEEF!",
+      "prepTime": "20 Minutes",
+      "cookTime": "1.5 Hours"
     },
     {
       "userId": 2,
-      "recipeName": "Third Test Recipe",
+      "recipeName": "Eighth Test Recipe",
+      "cuisine": "Breakfast",
+      "difficulty": "Medium",
+      "isSlowCooker": "TRUE",
       "ingredients": "* 3 Tablespoon Stuff\n* 85 Pound Cheese\n* 2.5 Each Da-BEEF",
-      "directions": "* Put the Stuff in the Stuff\n* Eat all da Cheeses\n* Squash Da BEEF!"
+      "directions": "* Put the Stuff in the Stuff\n* Eat all da Cheeses\n* Squash Da BEEF!",
+      "prepTime": "20 Minutes",
+      "cookTime": "1.5 Hours"
     }
   ]
 }
