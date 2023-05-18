@@ -64,6 +64,12 @@ export const getAllRecipes = async () => {
 };
 
 export const getSortedRecipes = async (key, value) => {
+  const body = {
+    key,
+    value
+  };
+  console.log(body);
+  const response = await api('recipes/sort', 'GET', body);
 
 }
 

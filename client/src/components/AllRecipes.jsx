@@ -16,6 +16,8 @@ const AllRecipes = () => {
       } else {
         const sortArray = sortBy.split(": ");
         console.log(sortArray);
+        await getSortedRecipes(sortArray[0], sortArray[1])
+          .then(res => setSortedRecipes(res));
       };
     };
     getRecipes();

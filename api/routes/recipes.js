@@ -1,4 +1,5 @@
 const express = require('express');
+const { Op } = require('sequelize');
 const router = express.Router();
 const { User, Recipe } = require('../models');
 const { asyncHandler } = require('../middleware/asyncHandler');
@@ -93,5 +94,21 @@ router.delete('/:id', authUser, asyncHandler(async (req, res) => {
     res.status(404).json({ message: "The recipe was not found" });
   };
 }));
+
+// SORT
+router.get('/sort', asyncHandler(async (req, res) => {
+  const attribute = req.body.key;
+  const value = req.body.value;
+  const recipes = await Recipe.findAll({
+    where: {
+      [attribute]: value
+    },
+    include: {
+      model: User,
+      as: 'recipeCreator',
+      attributes: ['username']
+    }
+  })
+}))
 
 module.exports = router;
