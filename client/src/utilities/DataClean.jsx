@@ -110,3 +110,21 @@ export function splitString(stringToSplit, keyString) {
 export function hypToSpace(string) {
   return string.replace(/-/g, ' ');
 };
+
+export function cleanKeyForSort(string) {
+  let lowerString = string.toLowerCase();
+  if (lowerString === 'slow cooker') {
+    lowerString = 'isSlowCooker';
+  };
+  return lowerString;
+};
+
+export function cleanValForSort(string) {
+  if (string === 'Yes') {
+    return 'TRUE';
+  } else if (string === 'No') {
+    return 'FALSE';
+  } else {
+    return string;
+  };
+};

@@ -96,9 +96,9 @@ router.delete('/:id', authUser, asyncHandler(async (req, res) => {
 }));
 
 // SORT
-router.get('/sort', asyncHandler(async (req, res) => {
-  const attribute = req.body.key;
-  const value = req.body.value;
+router.get('/sort/:key/:value', asyncHandler(async (req, res) => {
+  const attribute = req.params.key;
+  const value = req.params.value;
   const recipes = await Recipe.findAll({
     where: {
       [attribute]: value
@@ -108,7 +108,10 @@ router.get('/sort', asyncHandler(async (req, res) => {
       as: 'recipeCreator',
       attributes: ['username']
     }
-  })
+  });
+  if (recipes) {
+    res.status(200).json(recipes);
+  }
 }))
 
 module.exports = router;

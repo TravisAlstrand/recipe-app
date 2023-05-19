@@ -1,23 +1,30 @@
 import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import { getAllRecipes, getSortedRecipes } from "../utilities/ApiCalls";
+import { cleanKeyForSort, cleanValForSort } from "../utilities/DataClean";
 
 const AllRecipes = () => {
 
   const [allRecipes, setAllRecipes] = useState([]);
   const [sortedRecipes, setSortedRecipes] = useState([]);
   const [sortBy, setSortBy] = useState("All");
+  const [isSorted, setIsSorted] = useState(false);
 
   useEffect(() => {
     async function getRecipes() {
       if (sortBy === "All") {
-        await getAllRecipes()
-          .then(res => setAllRecipes(res))
+        if (allRecipes.length === 0) {
+          await getAllRecipes()
+            .then(res => setAllRecipes(res));
+        }
+        setIsSorted(false);
       } else {
         const sortArray = sortBy.split(": ");
-        console.log(sortArray);
-        await getSortedRecipes(sortArray[0], sortArray[1])
+        const cleanedAttribute = cleanKeyForSort(sortArray[0]);
+        const cleanedValue = cleanValForSort(sortArray[1]);
+        await getSortedRecipes(cleanedAttribute, cleanedValue)
           .then(res => setSortedRecipes(res));
+        setIsSorted(true);
       };
     };
     getRecipes();
@@ -56,15 +63,25 @@ const AllRecipes = () => {
           </select>
         </div>
         <ul className='recipes-cont'>
-          {allRecipes.length && allRecipes?.map((recipe) => {
-            return (
-              <li className='recipe-li' key={recipe.id}>
-                <Link to={`/recipes/${recipe.id}`}>
-                  {recipe.recipeName}
-                </Link>
-              </li>
-            );
-          })}
+          {!isSorted ?
+            allRecipes?.map((recipe) => {
+              return (
+                <li className='recipe-li' key={recipe.id}>
+                  <Link to={`/recipes/${recipe.id}`}>
+                    {recipe.recipeName}
+                  </Link>
+                </li>
+              );
+            }) :
+            sortedRecipes?.map((recipe) => {
+              return (
+                <li className='recipe-li' key={recipe.id}>
+                  <Link to={`/recipes/${recipe.id}`}>
+                    {recipe.recipeName}
+                  </Link>
+                </li>
+              );
+            })}
         </ul>
         <Link to={'/recipes/create'}>
           <button type='button' className='home-btn btn'>Create New Recipe</button>
